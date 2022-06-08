@@ -17,7 +17,7 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="机器学习概念  机器学习是一种从大量的数据中生成规则、发现模型，来帮助我们预测、判断、分组和解决问题的技术。 传统程序是程序员来定义函数，而在机器学习中是机器训练出函数。机器学习的本质特征，就是从数据中发现规则。 我们做机器学习项目，就是要选定一个算法，然后用数据训练机器，找到一族函数中最适合的那一个，形成模型。   机器学习分类 训练数据集全部有标签，叫监督学习（supervised learn">
@@ -80,7 +80,7 @@
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
+  <div class="container">
     <div class="headband"></div>
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -417,12 +417,8 @@
 
   
   <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
 <script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
 
 
 <script src="/js/schemes/pisces.js"></script>
@@ -473,7 +469,7 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
       meta       : guest,
       pageSize   : '10' || 10,
       visitor    : true,
-      lang       : 'zh-en' || 'zh-cn',
+      lang       : 'zh-cn' || 'zh-cn',
       path       : location.pathname,
       recordIP   : false,
       serverURLs : ''
