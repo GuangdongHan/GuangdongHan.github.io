@@ -20,37 +20,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="article">
-<meta property="og:title" content="STL-下篇">
-<meta property="og:url" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/index.html">
+  <meta name="description" content="IT行业技术日新月异，程序员也是一个职业焦虑非常严重的职业群体，平时工作之余也都自律和勤奋的学习浏览各种技术大咖的教程和技术贴，但是一段时间后，发现自己的实际技能并未有实质性的提高，浏览韩顺平总结的13误区，有所共鸣，特回顾总结一下 自主学习时的误区基础知识体系很重要人们总是热衷在探讨预测未来，未来会……, 但很少会思考什么东西不会变，各种框架层出不穷，让人应接不暇，但是对一个程序员而言，底层架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="学习和能力提升">
+<meta property="og:url" content="http://example.com/2022/06/09/%E5%AD%A6%E4%B9%A0%E5%92%8C%E8%83%BD%E5%8A%9B%E6%8F%90%E5%8D%87/index.html">
 <meta property="og:site_name" content="老韩的知识库">
+<meta property="og:description" content="IT行业技术日新月异，程序员也是一个职业焦虑非常严重的职业群体，平时工作之余也都自律和勤奋的学习浏览各种技术大咖的教程和技术贴，但是一段时间后，发现自己的实际技能并未有实质性的提高，浏览韩顺平总结的13误区，有所共鸣，特回顾总结一下 自主学习时的误区基础知识体系很重要人们总是热衷在探讨预测未来，未来会……, 但很少会思考什么东西不会变，各种框架层出不穷，让人应接不暇，但是对一个程序员而言，底层架构">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%871.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%872.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%873.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%874.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%875.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%876.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%877.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%878.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%879.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8710.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8711.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8712.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8713.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8714.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8715.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8716.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8717.SVG">
-<meta property="og:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8718.SVG">
-<meta property="article:published_time" content="2022-06-07T15:17:44.000Z">
-<meta property="article:modified_time" content="2022-06-07T15:26:52.436Z">
+<meta property="article:published_time" content="2022-06-09T02:56:20.000Z">
+<meta property="article:modified_time" content="2022-06-09T06:28:08.013Z">
 <meta property="article:author" content="Guangdong Han">
-<meta property="article:tag" content="C++">
+<meta property="article:tag" content="感悟">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%871.SVG">
 
-<link rel="canonical" href="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/">
+<link rel="canonical" href="http://example.com/2022/06/09/%E5%AD%A6%E4%B9%A0%E5%92%8C%E8%83%BD%E5%8A%9B%E6%8F%90%E5%8D%87/">
 
 
 <script id="page-configurations">
@@ -63,7 +46,7 @@
   };
 </script>
 
-  <title>STL-下篇 | 老韩的知识库</title>
+  <title>学习和能力提升 | 老韩的知识库</title>
   
 
 
@@ -211,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/09/%E5%AD%A6%E4%B9%A0%E5%92%8C%E8%83%BD%E5%8A%9B%E6%8F%90%E5%8D%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar1.jpeg">
@@ -224,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          STL-下篇
+          学习和能力提升
         </h1>
 
         <div class="post-meta">
@@ -235,7 +218,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2022-06-07 23:17:44 / 修改时间：23:26:52" itemprop="dateCreated datePublished" datetime="2022-06-07T23:17:44+08:00">2022-06-07</time>
+              <time title="创建时间：2022-06-09 10:56:20 / 修改时间：14:28:08" itemprop="dateCreated datePublished" datetime="2022-06-09T10:56:20+08:00">2022-06-09</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -243,12 +226,12 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                  <a href="/categories/%E6%9D%82%E8%B0%88/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a>
                 </span>
             </span>
 
           
-            <span id="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/" class="post-meta-item leancloud_visitors" data-flag-title="STL-下篇" title="阅读次数">
+            <span id="/2022/06/09/%E5%AD%A6%E4%B9%A0%E5%92%8C%E8%83%BD%E5%8A%9B%E6%8F%90%E5%8D%87/" class="post-meta-item leancloud_visitors" data-flag-title="学习和能力提升" title="阅读次数">
               <span class="post-meta-item-icon">
                 <i class="fa fa-eye"></i>
               </span>
@@ -263,8 +246,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/" itemprop="commentCount"></span>
+    <a title="valine" href="/2022/06/09/%E5%AD%A6%E4%B9%A0%E5%92%8C%E8%83%BD%E5%8A%9B%E6%8F%90%E5%8D%87/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/06/09/%E5%AD%A6%E4%B9%A0%E5%92%8C%E8%83%BD%E5%8A%9B%E6%8F%90%E5%8D%87/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -279,7 +262,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%871.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%872.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%873.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%874.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%875.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%876.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%877.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%878.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%879.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8710.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8711.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8712.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8713.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8714.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8715.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8716.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8717.SVG"><br><img src="/2022/06/07/STL-%E4%B8%8B%E7%AF%87/%E5%B9%BB%E7%81%AF%E7%89%8718.SVG"></p>
+        <p>IT行业技术日新月异，程序员也是一个职业焦虑非常严重的职业群体，平时工作之余也都自律和勤奋的学习浏览各种技术大咖的教程和技术贴，但是一段时间后，发现自己的实际技能并未有实质性的提高，浏览<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1h54y117DX">韩顺平</a>总结的13误区，有所共鸣，特回顾总结一下</p>
+<h2 id="自主学习时的误区"><a href="#自主学习时的误区" class="headerlink" title="自主学习时的误区"></a>自主学习时的误区</h2><h3 id="基础知识体系很重要"><a href="#基础知识体系很重要" class="headerlink" title="基础知识体系很重要"></a>基础知识体系很重要</h3><p>人们总是热衷在探讨预测未来，未来会……, 但很少会思考什么东西不会变，各种框架层出不穷，让人应接不暇，但是对一个程序员而言，底层架构，基础知识如设计模式 ，数据结构和算法，操作系统，多线程…，这是一个程序员无法避开的问题，并且近十年可能不会改变。</p>
+<h3 id="关于语言"><a href="#关于语言" class="headerlink" title="关于语言"></a>关于语言</h3><p>没有最好的语言，语言有自己的特点，擅长处理不同的问题，语言仅仅是工具，是服务自己的工作和目标的，最好是精通一门语言后，再横向发展拓展自己知识面，成为为T型人才（一专多能），而且精通一门语言后，再学习其他语言也能事半功倍。</p>
+<h3 id="做中学"><a href="#做中学" class="headerlink" title="做中学"></a>做中学</h3><p>计算机是一门实践科学，一方面在实践中能深度思考，加深理解，其次，对于软件开发来说，各种知识只有最终转化为生产代码，解决工作中的问题才能产生价值。</p>
+<p>天天看健身视频，并不能使我们拥有强健的肌肉，同样对于编程学习只看不练，同样没效果。纸上得来终觉浅，绝知此事要躬行。</p>
+<p>分享一个发生在自己身上的小例子，一次我和一个小伙伴想搭建一个调试环境，环境本身很复杂，任务文件和库文件很多而且存在各种依赖，我把对应版本软件部署后，一个组件的代码报了一个很奇快的异常，但是这个组件不是我们负责的，我们无法处理，维护这部分代码的同事暂时联系不上，但是他这版本的代码在别的环境运行的是好的，我俩感觉不是这个组件代码本身的问题，花了几个小时分析原因，各种百度，这种可能是什么问题…, 最后，把代码重新重新部署一遍，一切正常。根本原因：FTP 传输程序时发生异常，部署的软件是有问题的。<br>事实证明，各种理论分析，思考还不如试一次来的实在。</p>
+<h3 id="听懂和使用"><a href="#听懂和使用" class="headerlink" title="听懂和使用"></a>听懂和使用</h3><p>听懂和使用是完全不同的层次，听懂之后必须进行一些针对性的练习，像这种专业技能，听懂只能吸收10%能量，即使这10%的能量也会随着时间进行衰减；</p>
+<p>只是听属于无效学习，游泳课上，老师告诉你腿应该怎样蹬，手应该怎样放，但是还是学不会游泳，中间缺少了消化吸收的过程；</p>
+<p>建议:学习一门课中，至少用自己语言总结所学到的知识，并绘制成思维导图；</p>
+<h3 id="know-how-know-why"><a href="#know-how-know-why" class="headerlink" title="know how, know why"></a>know how, know why</h3><p>面对一个新事物，先整体后局部，先大致了解，后逐步深入，先知道如何使用再逐步探索为什么是这样。</p>
+<h3 id="勇于分享和交流"><a href="#勇于分享和交流" class="headerlink" title="勇于分享和交流"></a>勇于分享和交流</h3><p>不要闭门造车，敢于交流分享，交流分享技术很重要，不要让自己成为井底之蛙，很多问题别人也许有特别好的解决办法，不怕嘲笑，都是过来人，越战越勇！<br>输出也是学习的一种方法。</p>
+<h3 id="拥抱错误和异常"><a href="#拥抱错误和异常" class="headerlink" title="拥抱错误和异常"></a>拥抱错误和异常</h3><p>这是提高自己能力的重要方法，排除错误才会提升能力也会避免犯错。</p>
+<h3 id="资源在精不在多"><a href="#资源在精不在多" class="headerlink" title="资源在精不在多"></a>资源在精不在多</h3><p>误区：热衷搜集各种资料，收藏从未停止，学习从未开始。<br>建议：选一个最好的，反复学习，真正掌握。</p>
 
     </div>
 
@@ -295,7 +290,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://example.com/2022/06/07/STL-%E4%B8%8B%E7%AF%87/" title="STL-下篇">http://example.com/2022/06/07/STL-下篇/</a>
+    <a href="http://example.com/2022/06/09/%E5%AD%A6%E4%B9%A0%E5%92%8C%E8%83%BD%E5%8A%9B%E6%8F%90%E5%8D%87/" title="学习和能力提升">http://example.com/2022/06/09/学习和能力提升/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -306,7 +301,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/C/" rel="tag"># C++</a>
+              <a href="/tags/%E6%84%9F%E6%82%9F/" rel="tag"># 感悟</a>
           </div>
 
         
@@ -315,13 +310,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/06/07/STL-%E4%B8%8A%E7%AF%87/" rel="prev" title="STL-上篇">
-      <i class="fa fa-chevron-left"></i> STL-上篇
+    <a href="/2022/06/09/github%E4%BD%BF%E7%94%A8/" rel="prev" title="github使用">
+      <i class="fa fa-chevron-left"></i> github使用
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/06/09/github%E4%BD%BF%E7%94%A8/" rel="next" title="github使用">
-      github使用 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -381,6 +373,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E4%B8%BB%E5%AD%A6%E4%B9%A0%E6%97%B6%E7%9A%84%E8%AF%AF%E5%8C%BA"><span class="nav-number">1.</span> <span class="nav-text">自主学习时的误区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%E4%BD%93%E7%B3%BB%E5%BE%88%E9%87%8D%E8%A6%81"><span class="nav-number">1.1.</span> <span class="nav-text">基础知识体系很重要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E8%AF%AD%E8%A8%80"><span class="nav-number">1.2.</span> <span class="nav-text">关于语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%9A%E4%B8%AD%E5%AD%A6"><span class="nav-number">1.3.</span> <span class="nav-text">做中学</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AC%E6%87%82%E5%92%8C%E4%BD%BF%E7%94%A8"><span class="nav-number">1.4.</span> <span class="nav-text">听懂和使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#know-how-know-why"><span class="nav-number">1.5.</span> <span class="nav-text">know how, know why</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8B%87%E4%BA%8E%E5%88%86%E4%BA%AB%E5%92%8C%E4%BA%A4%E6%B5%81"><span class="nav-number">1.6.</span> <span class="nav-text">勇于分享和交流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A5%E6%8A%B1%E9%94%99%E8%AF%AF%E5%92%8C%E5%BC%82%E5%B8%B8"><span class="nav-number">1.7.</span> <span class="nav-text">拥抱错误和异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B5%84%E6%BA%90%E5%9C%A8%E7%B2%BE%E4%B8%8D%E5%9C%A8%E5%A4%9A"><span class="nav-number">1.8.</span> <span class="nav-text">资源在精不在多</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
