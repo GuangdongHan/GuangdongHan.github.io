@@ -28,7 +28,7 @@
 <meta property="og:description" content="目录文件相关压缩与解压tar -zvcf XXX.tar.gz 打包内容 &#x2F;&#x2F; 打包内容可以是多个文件，用空格分隔；或者是个目录tar -zvcf XXX.tar.gz -C 解压目录 &#x2F;&#x2F; -C 必不可少 zip [选项] xxx.zip 打包内容 &#x2F;&#x2F;对于文件夹需要-runzip [选项] xxx.zip -d 解压路径 Linux 运行级别  0 级别(halt)：系统停机模式 1 级别(s">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-11T06:33:41.000Z">
-<meta property="article:modified_time" content="2022-06-11T11:26:27.466Z">
+<meta property="article:modified_time" content="2022-06-12T14:42:59.513Z">
 <meta property="article:author" content="Guangdong Han">
 <meta name="twitter:card" content="summary">
 
@@ -215,10 +215,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-06-11 14:33:41 / 修改时间：19:26:27" itemprop="dateCreated datePublished" datetime="2022-06-11T14:33:41+08:00">2022-06-11</time>
+              <time title="创建时间：2022-06-11 14:33:41" itemprop="dateCreated datePublished" datetime="2022-06-11T14:33:41+08:00">2022-06-11</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-12 22:42:59" itemprop="dateModified" datetime="2022-06-12T22:42:59+08:00">2022-06-12</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -309,6 +315,39 @@
 </blockquote>
 <p>[时间]<br>hh:mm 例：04:00（当天4点）<br>midnight（深夜），noon（中午），teatime（下午茶时间）<br>12小时制：AM上午，PM下午，例：10 pm<br>month day 或 mm/dd/yy（年月日）或 dd mm yy 或 08:00 2020-06-11<br>now+ count time-units，例：now+1 minutes<br>today<br>tomorrow</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//5min 后执行特定命令</span></span><br><span class="line">at now + <span class="number">2</span> minutes</span><br><span class="line">date &gt; /root/date.<span class="built_in">log</span></span><br><span class="line">ctrl+D 两次</span><br><span class="line"><span class="comment">//5min 后执行固定脚本</span></span><br><span class="line">at now + <span class="number">5</span> minutes</span><br><span class="line">/root/my.sh</span><br><span class="line">ctrl+D 两次</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><p>Linux 系统有个唯一的目录结构，各磁盘分区挂在到特定目录；<br>Linux 硬盘分为IDE硬盘和SCSI硬盘，目前基本是SCSI硬盘<br>查看所有设备挂在情况lsblk -f  </p>
+<h4 id="如何增加一块硬盘"><a href="#如何增加一块硬盘" class="headerlink" title="如何增加一块硬盘"></a>如何增加一块硬盘</h4><ol>
+<li>虚拟机增加硬盘</li>
+<li>分区 fdisk /dev/sdb </li>
+<li>格式化 mkfs -t ext4 /dev/sdb1</li>
+<li>挂载 mount/umount 设备名称 挂载目录 命令挂载重启后失效</li>
+<li>设置自动挂载 通过修改fetc/fstab</li>
+</ol>
+<p>查询磁盘使用情况:df -h </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">rechard@DESKTOP-GTFTOTJ:~$ df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">rootfs          <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /</span><br><span class="line">none            <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /dev</span><br><span class="line">none            <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /run</span><br><span class="line">none            <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /run/lock</span><br><span class="line">none            <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /run/shm</span><br><span class="line">none            <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /run/user</span><br><span class="line">tmpfs           <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /sys/fs/cgroup</span><br><span class="line">C:\             <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /mnt/c</span><br><span class="line">D:\             <span class="number">3.1</span>G  <span class="number">141</span>M  <span class="number">2.9</span>G   <span class="number">5</span>% /mnt/d</span><br><span class="line">E:\             <span class="number">314</span>G  <span class="number">239</span>G   <span class="number">75</span>G  <span class="number">77</span>% /mnt/e</span><br><span class="line">F:\             <span class="number">323</span>G  <span class="number">284</span>G   <span class="number">40</span>G  <span class="number">88</span>% /mnt/f</span><br></pre></td></tr></table></figure>
+
+<p>查询指定目录的磁盘占用情况<br>du -hac –max-depth=1 /opt </p>
+<blockquote>
+<ul>
+<li>-s 指定目录的磁盘占用情况</li>
+<li>-h 带计量单位</li>
+<li>-a 含文件</li>
+<li>–max-depth=1 子目录深度</li>
+<li>-c列出明细同时，汇总</li>
+</ul>
+</blockquote>
+<p>查看某个文件夹文件的个数<br>ls -l | grep “^_” | wc -l<br>查看某个文件夹路径的个数<br>ls -l | grep “^d” | wc -l</p>
+<p>查看某个文件夹文件的个数<br>ls -lR | grep “^_” | wc -l</p>
+<p>查看某个文件夹路径的个数<br>ls -lR | grep “^d” | wc -l</p>
+<p>wc 参数及含义参数含义</p>
+<p>-c显示文件的Bytes数(字节数)</p>
+<p>-l将每个文件的行数及文件名输出到屏幕上</p>
+<p>-m将每个文件的字符数及文件名输出到屏幕上，如果当前系统不支持多字节字符其将显示与-c参数相同的结果</p>
+<p>-w将每个文件含有多少个词及文件名输出到屏幕上</p>
+
     </div>
 
     
@@ -406,7 +445,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3"><span class="nav-number">1.</span> <span class="nav-text">目录文件相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">压缩与解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">Linux 运行级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">查看文件指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-%E9%87%8D%E5%AE%9A%E5%90%91-%E5%92%8C-gt-gt-%E8%BF%BD%E5%8A%A0"><span class="nav-number">1.4.</span> <span class="nav-text">&gt; 重定向 和 &gt;&gt; 追加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ln-s"><span class="nav-number">1.5.</span> <span class="nav-text">ln -s</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">1.6.</span> <span class="nav-text">find</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">定时任务调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%A8%E6%9C%9F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1crontab"><span class="nav-number">2.1.</span> <span class="nav-text">周期定时任务crontab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E6%80%A7%E8%AE%A2%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="nav-number">2.2.</span> <span class="nav-text">一次性订时任务</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E6%96%87%E4%BB%B6%E7%9B%B8%E5%85%B3"><span class="nav-number">1.</span> <span class="nav-text">目录文件相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B"><span class="nav-number">1.1.</span> <span class="nav-text">压缩与解压</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux-%E8%BF%90%E8%A1%8C%E7%BA%A7%E5%88%AB"><span class="nav-number">1.2.</span> <span class="nav-text">Linux 运行级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E6%8C%87%E4%BB%A4"><span class="nav-number">1.3.</span> <span class="nav-text">查看文件指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-%E9%87%8D%E5%AE%9A%E5%90%91-%E5%92%8C-gt-gt-%E8%BF%BD%E5%8A%A0"><span class="nav-number">1.4.</span> <span class="nav-text">&gt; 重定向 和 &gt;&gt; 追加</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ln-s"><span class="nav-number">1.5.</span> <span class="nav-text">ln -s</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#find"><span class="nav-number">1.6.</span> <span class="nav-text">find</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1%E8%B0%83%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">定时任务调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%A8%E6%9C%9F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1crontab"><span class="nav-number">2.1.</span> <span class="nav-text">周期定时任务crontab</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E6%AC%A1%E6%80%A7%E8%AE%A2%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="nav-number">2.2.</span> <span class="nav-text">一次性订时任务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E7%AE%A1%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">磁盘管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%A2%9E%E5%8A%A0%E4%B8%80%E5%9D%97%E7%A1%AC%E7%9B%98"><span class="nav-number">3.0.1.</span> <span class="nav-text">如何增加一块硬盘</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
