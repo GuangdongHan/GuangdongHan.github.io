@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="源代码12345678910111213141516171819202122232425&#x2F;&#x2F;add.hint add(int a, int b);&#x2F;&#x2F;add.c #include &quot;add.h&quot;  int add(int a, int b)  &amp;#123;      return a+b;  &amp;#125;&#x2F;&#x2F;main.c#include &quot;add.h&quot;#in">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静态链接与动态链接">
+<meta property="og:url" content="http://example.com/2022/06/30/%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/index.html">
+<meta property="og:site_name" content="老韩的知识库">
+<meta property="og:description" content="源代码12345678910111213141516171819202122232425&#x2F;&#x2F;add.hint add(int a, int b);&#x2F;&#x2F;add.c #include &quot;add.h&quot;  int add(int a, int b)  &amp;#123;      return a+b;  &amp;#125;&#x2F;&#x2F;main.c#include &quot;add.h&quot;#in">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2022/06/30/%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84.jpeg">
+<meta property="article:published_time" content="2022-06-30T13:52:30.000Z">
+<meta property="article:modified_time" content="2022-07-01T00:00:38.318Z">
+<meta property="article:author" content="Guangdong Han">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/06/30/%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84.jpeg">
+
+<link rel="canonical" href="http://example.com/2022/06/30/%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>静态链接与动态链接 | 老韩的知识库</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">老韩的知识库</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-guestbook">
+
+    <a href="/guestbook/" rel="section"><i class="fa fa-book fa-fw"></i>guestbook</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/30/%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpeg">
+      <meta itemprop="name" content="Guangdong Han">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老韩的知识库">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          静态链接与动态链接
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-30 21:52:30" itemprop="dateCreated datePublished" datetime="2022-06-30T21:52:30+08:00">2022-06-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-01 08:00:38" itemprop="dateModified" datetime="2022-07-01T08:00:38+08:00">2022-07-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/06/30/%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" class="post-meta-item leancloud_visitors" data-flag-title="静态链接与动态链接" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/06/30/%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/06/30/%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//add.h</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//add.c</span></span><br><span class="line"></span><br><span class="line"> <span class="meta">#<span class="keyword">include</span> <span class="string">&quot;add.h&quot;</span></span></span><br><span class="line">  <span class="type">int</span> <span class="title function_">add</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span></span><br><span class="line">  &#123;</span><br><span class="line">      <span class="keyword">return</span> a+b;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//main.c</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;add.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="type">void</span> <span class="title function_">main</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> b = <span class="number">20</span>;</span><br><span class="line">    <span class="type">int</span> c = add(a,b);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;a+b = %d\n&quot;</span>, c);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="静态编译"><a href="#静态编译" class="headerlink" title="静态编译"></a>静态编译</h3><p>编译gcc -o test add.c main.c<br>反汇编objdump -d test<br>0x64a-0x683 = ff ff ff c7</p>
+<p>缺点：</p>
+<ol>
+<li>进程间不能共享二进制代码；</li>
+<li>软件升级维护困难，静态库实现改变需要重新编译</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">000000000000064a &lt;add&gt;:</span><br><span class="line"> 64a:   55                      push   %rbp</span><br><span class="line"> 64b:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line"> 64e:   89 7d fc                mov    %edi,-0x4(%rbp)</span><br><span class="line"> 651:   89 75 f8                mov    %esi,-0x8(%rbp)</span><br><span class="line"> 654:   8b 55 fc                mov    -0x4(%rbp),%edx</span><br><span class="line"> 657:   8b 45 f8                mov    -0x8(%rbp),%eax</span><br><span class="line"> 65a:   01 d0                   add    %edx,%eax</span><br><span class="line"> 65c:   5d                      pop    %rbp</span><br><span class="line"> 65d:   c3                      retq</span><br><span class="line"></span><br><span class="line">000000000000065e &lt;main&gt;:</span><br><span class="line"> 65e:   55                      push   %rbp</span><br><span class="line"> 65f:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line"> 662:   48 83 ec 10             sub    $0x10,%rsp</span><br><span class="line"> 666:   c7 45 f4 0a 00 00 00    movl   $0xa,-0xc(%rbp)</span><br><span class="line"> 66d:   c7 45 f8 14 00 00 00    movl   $0x14,-0x8(%rbp)</span><br><span class="line"> 674:   8b 55 f8                mov    -0x8(%rbp),%edx</span><br><span class="line"> 677:   8b 45 f4                mov    -0xc(%rbp),%eax</span><br><span class="line"> 67a:   89 d6                   mov    %edx,%esi</span><br><span class="line"> 67c:   89 c7                   mov    %eax,%edi</span><br><span class="line"> 67e:   e8 c7 ff ff ff          callq  64a &lt;add&gt;</span><br><span class="line"> 683:   89 45 fc                mov    %eax,-0x4(%rbp)</span><br><span class="line"> 686:   8b 45 fc                mov    -0x4(%rbp),%eax</span><br><span class="line"> 689:   89 c6                   mov    %eax,%esi</span><br><span class="line"> 68b:   48 8d 3d 92 00 00 00    lea    0x92(%rip),%rdi        # 724 &lt;_IO_stdin_used+0x4&gt;</span><br><span class="line"> 692:   b8 00 00 00 00          mov    $0x0,%eax</span><br><span class="line"> 697:   e8 84 fe ff ff          callq  520 &lt;printf@plt&gt;</span><br><span class="line"> 69c:   90                      nop</span><br><span class="line"> 69d:   c9                      leaveq</span><br><span class="line"> 69e:   c3                      retq</span><br><span class="line"> 69f:   90                      nop</span><br></pre></td></tr></table></figure>
+
+<h3 id="动态链接"><a href="#动态链接" class="headerlink" title="动态链接"></a>动态链接</h3><p>动态链接缺点:(1)系统存在多个版本动态库难以管理，<br>            (2)性能下降，启动时解析符号和cache miss<br>            注意编译命令顺序，链接依赖库放到最后，<br>            注意环境变量</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br></pre></td><td class="code"><pre><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$ ls</span><br><span class="line">add.c  add.h  main.c</span><br><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$</span><br><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$ gcc -o libadd.so add.c -shared -fPIC</span><br><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$ ls</span><br><span class="line">add.c  add.h  libadd.so  main.c</span><br><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$ gcc -o test -L. -ladd main.c</span><br><span class="line">/tmp/ccOFrBDv.o: In function `main&#x27;:</span><br><span class="line">main.c:(.text+0x21): undefined reference to `add&#x27;</span><br><span class="line">collect2: error: ld returned 1 exit status</span><br><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$ gcc -o test main.c -ladd -L.</span><br><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$ ls</span><br><span class="line">add.c  add.h  libadd.so  main.c  test</span><br><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$ ./test</span><br><span class="line">./test: error while loading shared libraries: libadd.so: cannot open shared object file: No such file or directory</span><br><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./</span><br><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$ ./test</span><br><span class="line">a+b = 30</span><br><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$ objdump -d libadd.so</span><br><span class="line"></span><br><span class="line">libadd.so:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .init:</span><br><span class="line"></span><br><span class="line">0000000000000460 &lt;_init&gt;:</span><br><span class="line"> 460:   48 83 ec 08             sub    $0x8,%rsp</span><br><span class="line"> 464:   48 8b 05 8d 0b 20 00    mov    0x200b8d(%rip),%rax        # 200ff8 &lt;__gmon_start__&gt;</span><br><span class="line"> 46b:   48 85 c0                test   %rax,%rax</span><br><span class="line"> 46e:   74 02                   je     472 &lt;_init+0x12&gt;</span><br><span class="line"> 470:   ff d0                   callq  *%rax</span><br><span class="line"> 472:   48 83 c4 08             add    $0x8,%rsp</span><br><span class="line"> 476:   c3                      retq</span><br><span class="line"></span><br><span class="line">Disassembly of section .plt:</span><br><span class="line"></span><br><span class="line">0000000000000480 &lt;.plt&gt;:</span><br><span class="line"> 480:   ff 35 82 0b 20 00       pushq  0x200b82(%rip)        # 201008 &lt;_GLOBAL_OFFSET_TABLE_+0x8&gt;</span><br><span class="line"> 486:   ff 25 84 0b 20 00       jmpq   *0x200b84(%rip)        # 201010 &lt;_GLOBAL_OFFSET_TABLE_+0x10&gt;</span><br><span class="line"> 48c:   0f 1f 40 00             nopl   0x0(%rax)</span><br><span class="line"></span><br><span class="line">Disassembly of section .plt.got:</span><br><span class="line"></span><br><span class="line">0000000000000490 &lt;__cxa_finalize@plt&gt;:</span><br><span class="line"> 490:   ff 25 4a 0b 20 00       jmpq   *0x200b4a(%rip)        # 200fe0 &lt;__cxa_finalize&gt;</span><br><span class="line"> 496:   66 90                   xchg   %ax,%ax</span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line">00000000000004a0 &lt;deregister_tm_clones&gt;:</span><br><span class="line"> 4a0:   48 8d 3d 79 0b 20 00    lea    0x200b79(%rip),%rdi        # 201020 &lt;_edata&gt;</span><br><span class="line"> 4a7:   55                      push   %rbp</span><br><span class="line"> 4a8:   48 8d 05 71 0b 20 00    lea    0x200b71(%rip),%rax        # 201020 &lt;_edata&gt;</span><br><span class="line"> 4af:   48 39 f8                cmp    %rdi,%rax</span><br><span class="line"> 4b2:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line"> 4b5:   74 19                   je     4d0 &lt;deregister_tm_clones+0x30&gt;</span><br><span class="line"> 4b7:   48 8b 05 32 0b 20 00    mov    0x200b32(%rip),%rax        # 200ff0 &lt;_ITM_deregisterTMCloneTable&gt;</span><br><span class="line"> 4be:   48 85 c0                test   %rax,%rax</span><br><span class="line"> 4c1:   74 0d                   je     4d0 &lt;deregister_tm_clones+0x30&gt;</span><br><span class="line"> 4c3:   5d                      pop    %rbp</span><br><span class="line"> 4c4:   ff e0                   jmpq   *%rax</span><br><span class="line"> 4c6:   66 2e 0f 1f 84 00 00    nopw   %cs:0x0(%rax,%rax,1)</span><br><span class="line"> 4cd:   00 00 00</span><br><span class="line"> 4d0:   5d                      pop    %rbp</span><br><span class="line"> 4d1:   c3                      retq</span><br><span class="line"> 4d2:   0f 1f 40 00             nopl   0x0(%rax)</span><br><span class="line"> 4d6:   66 2e 0f 1f 84 00 00    nopw   %cs:0x0(%rax,%rax,1)</span><br><span class="line"> 4dd:   00 00 00</span><br><span class="line"></span><br><span class="line">00000000000004e0 &lt;register_tm_clones&gt;:</span><br><span class="line"> 4e0:   48 8d 3d 39 0b 20 00    lea    0x200b39(%rip),%rdi        # 201020 &lt;_edata&gt;</span><br><span class="line"> 4e7:   48 8d 35 32 0b 20 00    lea    0x200b32(%rip),%rsi        # 201020 &lt;_edata&gt;</span><br><span class="line"> 4ee:   55                      push   %rbp</span><br><span class="line"> 4ef:   48 29 fe                sub    %rdi,%rsi</span><br><span class="line"> 4f2:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line"> 4f5:   48 c1 fe 03             sar    $0x3,%rsi</span><br><span class="line"> 4f9:   48 89 f0                mov    %rsi,%rax</span><br><span class="line"> 4fc:   48 c1 e8 3f             shr    $0x3f,%rax</span><br><span class="line"> 500:   48 01 c6                add    %rax,%rsi</span><br><span class="line"> 503:   48 d1 fe                sar    %rsi</span><br><span class="line"> 506:   74 18                   je     520 &lt;register_tm_clones+0x40&gt;</span><br><span class="line"> 508:   48 8b 05 d9 0a 20 00    mov    0x200ad9(%rip),%rax        # 200fe8 &lt;_ITM_registerTMCloneTable&gt;</span><br><span class="line"> 50f:   48 85 c0                test   %rax,%rax</span><br><span class="line"> 512:   74 0c                   je     520 &lt;register_tm_clones+0x40&gt;</span><br><span class="line"> 514:   5d                      pop    %rbp</span><br><span class="line"> 515:   ff e0                   jmpq   *%rax</span><br><span class="line"> 517:   66 0f 1f 84 00 00 00    nopw   0x0(%rax,%rax,1)</span><br><span class="line"> 51e:   00 00</span><br><span class="line"> 520:   5d                      pop    %rbp</span><br><span class="line"> 521:   c3                      retq</span><br><span class="line"> 522:   0f 1f 40 00             nopl   0x0(%rax)</span><br><span class="line"> 526:   66 2e 0f 1f 84 00 00    nopw   %cs:0x0(%rax,%rax,1)</span><br><span class="line"> 52d:   00 00 00</span><br><span class="line"></span><br><span class="line">0000000000000530 &lt;__do_global_dtors_aux&gt;:</span><br><span class="line"> 530:   80 3d e9 0a 20 00 00    cmpb   $0x0,0x200ae9(%rip)        # 201020 &lt;_edata&gt;</span><br><span class="line"> 537:   75 2f                   jne    568 &lt;__do_global_dtors_aux+0x38&gt;</span><br><span class="line"> 539:   48 83 3d 9f 0a 20 00    cmpq   $0x0,0x200a9f(%rip)        # 200fe0 &lt;__cxa_finalize&gt;</span><br><span class="line"> 540:   00</span><br><span class="line"> 541:   55                      push   %rbp</span><br><span class="line"> 542:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line"> 545:   74 0c                   je     553 &lt;__do_global_dtors_aux+0x23&gt;</span><br><span class="line"> 547:   48 8b 3d ca 0a 20 00    mov    0x200aca(%rip),%rdi        # 201018 &lt;__dso_handle&gt;</span><br><span class="line"> 54e:   e8 3d ff ff ff          callq  490 &lt;__cxa_finalize@plt&gt;</span><br><span class="line"> 553:   e8 48 ff ff ff          callq  4a0 &lt;deregister_tm_clones&gt;</span><br><span class="line"> 558:   c6 05 c1 0a 20 00 01    movb   $0x1,0x200ac1(%rip)        # 201020 &lt;_edata&gt;</span><br><span class="line"> 55f:   5d                      pop    %rbp</span><br><span class="line"> 560:   c3                      retq</span><br><span class="line"> 561:   0f 1f 80 00 00 00 00    nopl   0x0(%rax)</span><br><span class="line"> 568:   f3 c3                   repz retq</span><br><span class="line"> 56a:   66 0f 1f 44 00 00       nopw   0x0(%rax,%rax,1)</span><br><span class="line"></span><br><span class="line">0000000000000570 &lt;frame_dummy&gt;:</span><br><span class="line"> 570:   55                      push   %rbp</span><br><span class="line"> 571:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line"> 574:   5d                      pop    %rbp</span><br><span class="line"> 575:   e9 66 ff ff ff          jmpq   4e0 &lt;register_tm_clones&gt;</span><br><span class="line"></span><br><span class="line">000000000000057a &lt;add&gt;:</span><br><span class="line"> 57a:   55                      push   %rbp</span><br><span class="line"> 57b:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line"> 57e:   89 7d fc                mov    %edi,-0x4(%rbp)</span><br><span class="line"> 581:   89 75 f8                mov    %esi,-0x8(%rbp)</span><br><span class="line"> 584:   8b 55 fc                mov    -0x4(%rbp),%edx</span><br><span class="line"> 587:   8b 45 f8                mov    -0x8(%rbp),%eax</span><br><span class="line"> 58a:   01 d0                   add    %edx,%eax</span><br><span class="line"> 58c:   5d                      pop    %rbp</span><br><span class="line"> 58d:   c3                      retq</span><br><span class="line"></span><br><span class="line">Disassembly of section .fini:</span><br><span class="line"></span><br><span class="line">0000000000000590 &lt;_fini&gt;:</span><br><span class="line"> 590:   48 83 ec 08             sub    $0x8,%rsp</span><br><span class="line"> 594:   48 83 c4 08             add    $0x8,%rsp</span><br><span class="line"> 598:   c3                      retq</span><br><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$ objdump -d test</span><br><span class="line"></span><br><span class="line">test:     file format elf64-x86-64</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Disassembly of section .init:</span><br><span class="line"></span><br><span class="line">00000000000005e8 &lt;_init&gt;:</span><br><span class="line"> 5e8:   48 83 ec 08             sub    $0x8,%rsp</span><br><span class="line"> 5ec:   48 8b 05 f5 09 20 00    mov    0x2009f5(%rip),%rax        # 200fe8 &lt;__gmon_start__&gt;</span><br><span class="line"> 5f3:   48 85 c0                test   %rax,%rax</span><br><span class="line"> 5f6:   74 02                   je     5fa &lt;_init+0x12&gt;</span><br><span class="line"> 5f8:   ff d0                   callq  *%rax</span><br><span class="line"> 5fa:   48 83 c4 08             add    $0x8,%rsp</span><br><span class="line"> 5fe:   c3                      retq</span><br><span class="line"></span><br><span class="line">Disassembly of section .plt:</span><br><span class="line"></span><br><span class="line">0000000000000600 &lt;.plt&gt;:</span><br><span class="line"> 600:   ff 35 b2 09 20 00       pushq  0x2009b2(%rip)        # 200fb8 &lt;_GLOBAL_OFFSET_TABLE_+0x8&gt;</span><br><span class="line"> 606:   ff 25 b4 09 20 00       jmpq   *0x2009b4(%rip)        # 200fc0 &lt;_GLOBAL_OFFSET_TABLE_+0x10&gt;</span><br><span class="line"> 60c:   0f 1f 40 00             nopl   0x0(%rax)</span><br><span class="line"></span><br><span class="line">0000000000000610 &lt;add@plt&gt;:</span><br><span class="line"> 610:   ff 25 b2 09 20 00       jmpq   *0x2009b2(%rip)        # 200fc8 &lt;add&gt;</span><br><span class="line"> 616:   68 00 00 00 00          pushq  $0x0</span><br><span class="line"> 61b:   e9 e0 ff ff ff          jmpq   600 &lt;.plt&gt;</span><br><span class="line"></span><br><span class="line">0000000000000620 &lt;printf@plt&gt;:</span><br><span class="line"> 620:   ff 25 aa 09 20 00       jmpq   *0x2009aa(%rip)        # 200fd0 &lt;printf@GLIBC_2.2.5&gt;</span><br><span class="line"> 626:   68 01 00 00 00          pushq  $0x1</span><br><span class="line"> 62b:   e9 d0 ff ff ff          jmpq   600 &lt;.plt&gt;</span><br><span class="line"></span><br><span class="line">Disassembly of section .plt.got:</span><br><span class="line"></span><br><span class="line">0000000000000630 &lt;__cxa_finalize@plt&gt;:</span><br><span class="line"> 630:   ff 25 c2 09 20 00       jmpq   *0x2009c2(%rip)        # 200ff8 &lt;__cxa_finalize@GLIBC_2.2.5&gt;</span><br><span class="line"> 636:   66 90                   xchg   %ax,%ax</span><br><span class="line"></span><br><span class="line">Disassembly of section .text:</span><br><span class="line"></span><br><span class="line">0000000000000640 &lt;_start&gt;:</span><br><span class="line"> 640:   31 ed                   xor    %ebp,%ebp</span><br><span class="line"> 642:   49 89 d1                mov    %rdx,%r9</span><br><span class="line"> 645:   5e                      pop    %rsi</span><br><span class="line"> 646:   48 89 e2                mov    %rsp,%rdx</span><br><span class="line"> 649:   48 83 e4 f0             and    $0xfffffffffffffff0,%rsp</span><br><span class="line"> 64d:   50                      push   %rax</span><br><span class="line"> 64e:   54                      push   %rsp</span><br><span class="line"> 64f:   4c 8d 05 aa 01 00 00    lea    0x1aa(%rip),%r8        # 800 &lt;__libc_csu_fini&gt;</span><br><span class="line"> 656:   48 8d 0d 33 01 00 00    lea    0x133(%rip),%rcx        # 790 &lt;__libc_csu_init&gt;</span><br><span class="line"> 65d:   48 8d 3d e6 00 00 00    lea    0xe6(%rip),%rdi        # 74a &lt;main&gt;</span><br><span class="line"> 664:   ff 15 76 09 20 00       callq  *0x200976(%rip)        # 200fe0 &lt;__libc_start_main@GLIBC_2.2.5&gt;</span><br><span class="line"> 66a:   f4                      hlt</span><br><span class="line"> 66b:   0f 1f 44 00 00          nopl   0x0(%rax,%rax,1)</span><br><span class="line"></span><br><span class="line">0000000000000670 &lt;deregister_tm_clones&gt;:</span><br><span class="line"> 670:   48 8d 3d 99 09 20 00    lea    0x200999(%rip),%rdi        # 201010 &lt;__TMC_END__&gt;</span><br><span class="line"> 677:   55                      push   %rbp</span><br><span class="line"> 678:   48 8d 05 91 09 20 00    lea    0x200991(%rip),%rax        # 201010 &lt;__TMC_END__&gt;</span><br><span class="line"> 67f:   48 39 f8                cmp    %rdi,%rax</span><br><span class="line"> 682:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line"> 685:   74 19                   je     6a0 &lt;deregister_tm_clones+0x30&gt;</span><br><span class="line"> 687:   48 8b 05 4a 09 20 00    mov    0x20094a(%rip),%rax        # 200fd8 &lt;_ITM_deregisterTMCloneTable&gt;</span><br><span class="line"> 68e:   48 85 c0                test   %rax,%rax</span><br><span class="line"> 691:   74 0d                   je     6a0 &lt;deregister_tm_clones+0x30&gt;</span><br><span class="line"> 693:   5d                      pop    %rbp</span><br><span class="line"> 694:   ff e0                   jmpq   *%rax</span><br><span class="line"> 696:   66 2e 0f 1f 84 00 00    nopw   %cs:0x0(%rax,%rax,1)</span><br><span class="line"> 69d:   00 00 00</span><br><span class="line"> 6a0:   5d                      pop    %rbp</span><br><span class="line"> 6a1:   c3                      retq</span><br><span class="line"> 6a2:   0f 1f 40 00             nopl   0x0(%rax)</span><br><span class="line"> 6a6:   66 2e 0f 1f 84 00 00    nopw   %cs:0x0(%rax,%rax,1)</span><br><span class="line"> 6ad:   00 00 00</span><br><span class="line"></span><br><span class="line">00000000000006b0 &lt;register_tm_clones&gt;:</span><br><span class="line"> 6b0:   48 8d 3d 59 09 20 00    lea    0x200959(%rip),%rdi        # 201010 &lt;__TMC_END__&gt;</span><br><span class="line"> 6b7:   48 8d 35 52 09 20 00    lea    0x200952(%rip),%rsi        # 201010 &lt;__TMC_END__&gt;</span><br><span class="line"> 6be:   55                      push   %rbp</span><br><span class="line"> 6bf:   48 29 fe                sub    %rdi,%rsi</span><br><span class="line"> 6c2:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line"> 6c5:   48 c1 fe 03             sar    $0x3,%rsi</span><br><span class="line"> 6c9:   48 89 f0                mov    %rsi,%rax</span><br><span class="line"> 6cc:   48 c1 e8 3f             shr    $0x3f,%rax</span><br><span class="line"> 6d0:   48 01 c6                add    %rax,%rsi</span><br><span class="line"> 6d3:   48 d1 fe                sar    %rsi</span><br><span class="line"> 6d6:   74 18                   je     6f0 &lt;register_tm_clones+0x40&gt;</span><br><span class="line"> 6d8:   48 8b 05 11 09 20 00    mov    0x200911(%rip),%rax        # 200ff0 &lt;_ITM_registerTMCloneTable&gt;</span><br><span class="line"> 6df:   48 85 c0                test   %rax,%rax</span><br><span class="line"> 6e2:   74 0c                   je     6f0 &lt;register_tm_clones+0x40&gt;</span><br><span class="line"> 6e4:   5d                      pop    %rbp</span><br><span class="line"> 6e5:   ff e0                   jmpq   *%rax</span><br><span class="line"> 6e7:   66 0f 1f 84 00 00 00    nopw   0x0(%rax,%rax,1)</span><br><span class="line"> 6ee:   00 00</span><br><span class="line"> 6f0:   5d                      pop    %rbp</span><br><span class="line"> 6f1:   c3                      retq</span><br><span class="line"> 6f2:   0f 1f 40 00             nopl   0x0(%rax)</span><br><span class="line"> 6f6:   66 2e 0f 1f 84 00 00    nopw   %cs:0x0(%rax,%rax,1)</span><br><span class="line"> 6fd:   00 00 00</span><br><span class="line"></span><br><span class="line">0000000000000700 &lt;__do_global_dtors_aux&gt;:</span><br><span class="line"> 700:   80 3d 09 09 20 00 00    cmpb   $0x0,0x200909(%rip)        # 201010 &lt;__TMC_END__&gt;</span><br><span class="line"> 707:   75 2f                   jne    738 &lt;__do_global_dtors_aux+0x38&gt;</span><br><span class="line"> 709:   48 83 3d e7 08 20 00    cmpq   $0x0,0x2008e7(%rip)        # 200ff8 &lt;__cxa_finalize@GLIBC_2.2.5&gt;</span><br><span class="line"> 710:   00</span><br><span class="line"> 711:   55                      push   %rbp</span><br><span class="line"> 712:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line"> 715:   74 0c                   je     723 &lt;__do_global_dtors_aux+0x23&gt;</span><br><span class="line"> 717:   48 8b 3d ea 08 20 00    mov    0x2008ea(%rip),%rdi        # 201008 &lt;__dso_handle&gt;</span><br><span class="line"> 71e:   e8 0d ff ff ff          callq  630 &lt;__cxa_finalize@plt&gt;</span><br><span class="line"> 723:   e8 48 ff ff ff          callq  670 &lt;deregister_tm_clones&gt;</span><br><span class="line"> 728:   c6 05 e1 08 20 00 01    movb   $0x1,0x2008e1(%rip)        # 201010 &lt;__TMC_END__&gt;</span><br><span class="line"> 72f:   5d                      pop    %rbp</span><br><span class="line"> 730:   c3                      retq</span><br><span class="line"> 731:   0f 1f 80 00 00 00 00    nopl   0x0(%rax)</span><br><span class="line"> 738:   f3 c3                   repz retq</span><br><span class="line"> 73a:   66 0f 1f 44 00 00       nopw   0x0(%rax,%rax,1)</span><br><span class="line"></span><br><span class="line">0000000000000740 &lt;frame_dummy&gt;:</span><br><span class="line"> 740:   55                      push   %rbp</span><br><span class="line"> 741:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line"> 744:   5d                      pop    %rbp</span><br><span class="line"> 745:   e9 66 ff ff ff          jmpq   6b0 &lt;register_tm_clones&gt;</span><br><span class="line"></span><br><span class="line">000000000000074a &lt;main&gt;:</span><br><span class="line"> 74a:   55                      push   %rbp</span><br><span class="line"> 74b:   48 89 e5                mov    %rsp,%rbp</span><br><span class="line"> 74e:   48 83 ec 10             sub    $0x10,%rsp</span><br><span class="line"> 752:   c7 45 f4 0a 00 00 00    movl   $0xa,-0xc(%rbp)</span><br><span class="line"> 759:   c7 45 f8 14 00 00 00    movl   $0x14,-0x8(%rbp)</span><br><span class="line"> 760:   8b 55 f8                mov    -0x8(%rbp),%edx</span><br><span class="line"> 763:   8b 45 f4                mov    -0xc(%rbp),%eax</span><br><span class="line"> 766:   89 d6                   mov    %edx,%esi</span><br><span class="line"> 768:   89 c7                   mov    %eax,%edi</span><br><span class="line"> 76a:   e8 a1 fe ff ff          callq  610 &lt;add@plt&gt;</span><br><span class="line"> 76f:   89 45 fc                mov    %eax,-0x4(%rbp)</span><br><span class="line"> 772:   8b 45 fc                mov    -0x4(%rbp),%eax</span><br><span class="line"> 775:   89 c6                   mov    %eax,%esi</span><br><span class="line"> 777:   48 8d 3d 96 00 00 00    lea    0x96(%rip),%rdi        # 814 &lt;_IO_stdin_used+0x4&gt;</span><br><span class="line"> 77e:   b8 00 00 00 00          mov    $0x0,%eax</span><br><span class="line"> 783:   e8 98 fe ff ff          callq  620 &lt;printf@plt&gt;</span><br><span class="line"> 788:   90                      nop</span><br><span class="line"> 789:   c9                      leaveq</span><br><span class="line"> 78a:   c3                      retq</span><br><span class="line"> 78b:   0f 1f 44 00 00          nopl   0x0(%rax,%rax,1)</span><br><span class="line"></span><br><span class="line">0000000000000790 &lt;__libc_csu_init&gt;:</span><br><span class="line"> 790:   41 57                   push   %r15</span><br><span class="line"> 792:   41 56                   push   %r14</span><br><span class="line"> 794:   49 89 d7                mov    %rdx,%r15</span><br><span class="line"> 797:   41 55                   push   %r13</span><br><span class="line"> 799:   41 54                   push   %r12</span><br><span class="line"> 79b:   4c 8d 25 fe 05 20 00    lea    0x2005fe(%rip),%r12        # 200da0 &lt;__frame_dummy_init_array_entry&gt;</span><br><span class="line"> 7a2:   55                      push   %rbp</span><br><span class="line"> 7a3:   48 8d 2d fe 05 20 00    lea    0x2005fe(%rip),%rbp        # 200da8 &lt;__init_array_end&gt;</span><br><span class="line"> 7aa:   53                      push   %rbx</span><br><span class="line"> 7ab:   41 89 fd                mov    %edi,%r13d</span><br><span class="line"> 7ae:   49 89 f6                mov    %rsi,%r14</span><br><span class="line"> 7b1:   4c 29 e5                sub    %r12,%rbp</span><br><span class="line"> 7b4:   48 83 ec 08             sub    $0x8,%rsp</span><br><span class="line"> 7b8:   48 c1 fd 03             sar    $0x3,%rbp</span><br><span class="line"> 7bc:   e8 27 fe ff ff          callq  5e8 &lt;_init&gt;</span><br><span class="line"> 7c1:   48 85 ed                test   %rbp,%rbp</span><br><span class="line"> 7c4:   74 20                   je     7e6 &lt;__libc_csu_init+0x56&gt;</span><br><span class="line"> 7c6:   31 db                   xor    %ebx,%ebx</span><br><span class="line"> 7c8:   0f 1f 84 00 00 00 00    nopl   0x0(%rax,%rax,1)</span><br><span class="line"> 7cf:   00</span><br><span class="line"> 7d0:   4c 89 fa                mov    %r15,%rdx</span><br><span class="line"> 7d3:   4c 89 f6                mov    %r14,%rsi</span><br><span class="line"> 7d6:   44 89 ef                mov    %r13d,%edi</span><br><span class="line"> 7d9:   41 ff 14 dc             callq  *(%r12,%rbx,8)</span><br><span class="line"> 7dd:   48 83 c3 01             add    $0x1,%rbx</span><br><span class="line"> 7e1:   48 39 dd                cmp    %rbx,%rbp</span><br><span class="line"> 7e4:   75 ea                   jne    7d0 &lt;__libc_csu_init+0x40&gt;</span><br><span class="line"> 7e6:   48 83 c4 08             add    $0x8,%rsp</span><br><span class="line"> 7ea:   5b                      pop    %rbx</span><br><span class="line"> 7eb:   5d                      pop    %rbp</span><br><span class="line"> 7ec:   41 5c                   pop    %r12</span><br><span class="line"> 7ee:   41 5d                   pop    %r13</span><br><span class="line"> 7f0:   41 5e                   pop    %r14</span><br><span class="line"> 7f2:   41 5f                   pop    %r15</span><br><span class="line"> 7f4:   c3                      retq</span><br><span class="line"> 7f5:   90                      nop</span><br><span class="line"> 7f6:   66 2e 0f 1f 84 00 00    nopw   %cs:0x0(%rax,%rax,1)</span><br><span class="line"> 7fd:   00 00 00</span><br><span class="line"></span><br><span class="line">0000000000000800 &lt;__libc_csu_fini&gt;:</span><br><span class="line"> 800:   f3 c3                   repz retq</span><br><span class="line"></span><br><span class="line">Disassembly of section .fini:</span><br><span class="line"></span><br><span class="line">0000000000000804 &lt;_fini&gt;:</span><br><span class="line"> 804:   48 83 ec 08             sub    $0x8,%rsp</span><br><span class="line"> 808:   48 83 c4 08             add    $0x8,%rsp</span><br><span class="line"> 80c:   c3                      retq</span><br><span class="line">rechard@DESKTOP-GTFTOTJ:~/selfLearn/LDD$</span><br></pre></td></tr></table></figure>
+
+<h3 id="位置无关代码原理"><a href="#位置无关代码原理" class="headerlink" title="位置无关代码原理"></a>位置无关代码原理</h3><p>代码共享，数据独有， 通过GOF(global of table)，将映射时将偏移地址放到gof表里；</p>
+<p><img src="/2022/06/30/%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84.jpeg"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Guangdong Han
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2022/06/30/%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5/" title="静态链接与动态链接">http://example.com/2022/06/30/静态链接与动态链接/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/20/vector/" rel="prev" title="vector">
+      <i class="fa fa-chevron-left"></i> vector
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/07/02/condition-variable/" rel="next" title="condition variable">
+      condition variable <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E4%BB%A3%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">源代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E7%BC%96%E8%AF%91"><span class="nav-number">2.</span> <span class="nav-text">静态编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">动态链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E7%BD%AE%E6%97%A0%E5%85%B3%E4%BB%A3%E7%A0%81%E5%8E%9F%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">位置无关代码原理</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Guangdong Han"
+      src="/images/avatar1.jpeg">
+  <p class="site-author-name" itemprop="name">Guangdong Han</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GuangdongHan" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GuangdongHan" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:gdhann@163.com" title="E-Mail → mailto:gdhann@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Guangdong Han</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : '0NjkfJuAboyUASjEmSBed2qr-gzGzoHsz',
+      appKey     : '5c1sTRHiyKPoBx8gEWlrHd1C',
+      placeholder: "请输入你的评论：",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : 'zh-cn' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
