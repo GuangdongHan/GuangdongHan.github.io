@@ -188,6 +188,195 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/04/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%97%B6%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpeg">
+      <meta itemprop="name" content="Guangdong Han">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老韩的知识库">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/04/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%97%B6%E9%97%B4/" class="post-title-link" itemprop="url">函数调用时间</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-04 21:14:22 / 修改时间：21:15:24" itemprop="dateCreated datePublished" datetime="2022-07-04T21:14:22+08:00">2022-07-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/07/04/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%97%B6%E9%97%B4/" class="post-meta-item leancloud_visitors" data-flag-title="函数调用时间" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/07/04/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%97%B6%E9%97%B4/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/04/%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E6%97%B6%E9%97%B4/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//计算执行时间</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">auto</span> t1 = std::chrono::system_clock::<span class="built_in">now</span>();</span><br><span class="line">	<span class="built_in">Sleep</span>(<span class="number">1000</span>);</span><br><span class="line">	<span class="keyword">auto</span> t2 = std::chrono::system_clock::<span class="built_in">now</span>();</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;秒：&quot;</span> &lt;&lt; std::chrono::<span class="built_in">duration_cast</span>&lt;std::chrono::seconds&gt;(t2 - t1).<span class="built_in">count</span>()&lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">	cout &lt;&lt; <span class="string">&quot;hao秒：&quot;</span> &lt;&lt; std::chrono::<span class="built_in">duration_cast</span>&lt;std::chrono::milliseconds&gt;(t2 - t1).<span class="built_in">count</span>();</span><br><span class="line">	<span class="comment">//计算当前时间和日期</span></span><br><span class="line">	<span class="keyword">auto</span> t = std::chrono::system_clock::<span class="built_in">to_time_t</span>(std::chrono::system_clock::<span class="built_in">now</span>());</span><br><span class="line"></span><br><span class="line">	cout &lt;&lt; std::<span class="built_in">put_time</span>(std::<span class="built_in">localtime</span>(&amp;t), <span class="string">&quot;%Y-%m-%d %H.%M.%S&quot;</span>);</span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpeg">
+      <meta itemprop="name" content="Guangdong Han">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老韩的知识库">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/" class="post-title-link" itemprop="url">二进制文件</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-04 08:03:51 / 修改时间：08:22:18" itemprop="dateCreated datePublished" datetime="2022-07-04T08:03:51+08:00">2022-07-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/07/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/" class="post-meta-item leancloud_visitors" data-flag-title="二进制文件" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/07/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/04/%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%96%87%E4%BB%B6/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="查看二进制文件"><a href="#查看二进制文件" class="headerlink" title="查看二进制文件"></a>查看二进制文件</h3><ol>
+<li><p>通过文本编辑器查看ls<br>vim bin/ls<br>可以搜索color可以看到：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">                                <span class="number">1</span>,<span class="number">048</span>,<span class="number">576</span> bytes; see SIZE format below</span><br><span class="line">   -B, --ignore-backups       <span class="keyword">do</span> not <span class="built_in">list</span> implied entries ending with ~</span><br><span class="line">   -c                         with -lt: sort by, and show, ctime (time of last</span><br><span class="line">                                modification of file status information);</span><br><span class="line">                                with -l: show ctime and sort by name;</span><br><span class="line">                                otherwise: sort by ctime, newest first</span><br><span class="line"> ^@^@^@  -C                         <span class="built_in">list</span> entries by columns</span><br><span class="line">       --color[=WHEN]         colorize the output; WHEN can be <span class="string">&#x27;always&#x27;</span> (<span class="keyword">default</span></span><br><span class="line">                                <span class="keyword">if</span> omitted), <span class="string">&#x27;auto&#x27;</span>, or <span class="string">&#x27;never&#x27;</span>; more info below</span><br><span class="line">   -d, --directory            <span class="built_in">list</span> directories themselves, not their contents</span><br><span class="line">   -D, --dired                generate output designed <span class="keyword">for</span> Emacs<span class="number">&#x27;</span> dired mode</span><br><span class="line"> ^@^@  -f                         <span class="keyword">do</span> not sort, enable -aU, disable -ls --color</span><br><span class="line">   -F, --classify             append <span class="title function_">indicator</span> <span class="params">(one of */=&gt;@|)</span> to entries</span><br><span class="line">       --file-type            likewise, except <span class="keyword">do</span> not append &#x27;*&#x27;</span><br><span class="line">       --format=WORD          across -x, commas -m, horizontal -x, <span class="type">long</span> -l,</span><br><span class="line">                                single-column <span class="number">-1</span>, verbose -l, vertical -C</span><br><span class="line">NORMAL  <span class="number">1</span>  /bin/ls ⊝</span><br></pre></td></tr></table></figure></li>
+<li><p>可以通过xxd 转成16 进制查看</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rechard@DESKTOP-GTFTOTJ:~$ xxd /bin/ls</span><br><span class="line"><span class="number">00000000</span>: <span class="number">7f</span>45 <span class="number">4</span>c46 <span class="number">0201</span> <span class="number">0100</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  .ELF............</span><br><span class="line"><span class="number">00000010</span>: <span class="number">0300</span> <span class="number">3e00</span> <span class="number">0100</span> <span class="number">0000</span> <span class="number">5058</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ..&gt;.....PX......</span><br><span class="line"><span class="number">00000020</span>: <span class="number">4000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span> a003 <span class="number">0200</span> <span class="number">0000</span> <span class="number">0000</span>  @...............</span><br><span class="line"><span class="number">00000030</span>: <span class="number">0000</span> <span class="number">0000</span> <span class="number">4000</span> <span class="number">3800</span> <span class="number">0900</span> <span class="number">4000</span> <span class="number">1</span>c00 <span class="number">1b</span>00  ....@<span class="number">.8</span>...@.....</span><br><span class="line"><span class="number">00000040</span>: <span class="number">0600</span> <span class="number">0000</span> <span class="number">0500</span> <span class="number">0000</span> <span class="number">4000</span> <span class="number">0000</span> <span class="number">0000</span> <span class="number">0000</span>  ........@.......</span><br></pre></td></tr></table></figure></li>
+<li><p>通过readelf 查看<br>-h 查看文件头<br>rechard@DESKTOP-GTFTOTJ:<del>$ readelf -h /bin/ls<br>ELF Header:<br>Magic:   7f 45 4c 46 02 01 01 00 00 00 00 00 00 00 00 00<br>Class:                             ELF64<br>Data:                              2’s complement, little endian<br>Version:                           1 (current)<br>OS/ABI:                            UNIX - System V<br>ABI Version:                       0<br>Type:                              DYN (Shared object file)<br>Machine:                           Advanced Micro Devices X86-64<br>Version:                           0x1<br>Entry point address:               0x5850<br>Start of program headers:          64 (bytes into file)<br>Start of section headers:          132000 (bytes into file)<br>Flags:                             0x0<br>Size of this header:               64 (bytes)<br>Size of program headers:           56 (bytes)<br>Number of program headers:         9<br>Size of section headers:           64 (bytes)<br>Number of section headers:         28<br>Section header string table index: 27<br>rechard@DESKTOP-GTFTOTJ:</del>$</p>
+</li>
+</ol>
+<p>  -l 查看该文件如何被加载</p>
+<p>  rechard@DESKTOP-GTFTOTJ:~$ readelf -l /bin/ls</p>
+<p>Elf file type is DYN (Shared object file)<br>Entry point 0x5850<br>There are 9 program headers, starting at offset 64</p>
+<p>Program Headers:<br>  Type           Offset             VirtAddr           PhysAddr<br>                 FileSiz            MemSiz              Flags  Align<br>  PHDR           0x0000000000000040 0x0000000000000040 0x0000000000000040<br>                 0x00000000000001f8 0x00000000000001f8  R E    0x8<br>  INTERP         0x0000000000000238 0x0000000000000238 0x0000000000000238<br>                 0x000000000000001c 0x000000000000001c  R      0x1<br>      [Requesting program interpreter: /lib64/ld-linux-x86-64.so.2]<br>      //加载地址随机化，pic 位置无关代码<br>  LOAD           0x0000000000000000 0x0000000000000000 0x0000000000000000<br>                 0x000000000001e6e8 0x000000000001e6e8  R E    0x200000<br>  LOAD           0x000000000001eff0 0x000000000021eff0 0x000000000021eff0<br>                 0x0000000000001278 0x0000000000002570  RW     0x200000<br>  DYNAMIC        0x000000000001fa38 0x000000000021fa38 0x000000000021fa38<br>                 0x0000000000000200 0x0000000000000200  RW     0x8<br>  NOTE           0x0000000000000254 0x0000000000000254 0x0000000000000254<br>                 0x0000000000000044 0x0000000000000044  R      0x4<br>  GNU_EH_FRAME   0x000000000001b1a0 0x000000000001b1a0 0x000000000001b1a0<br>                 0x0000000000000884 0x0000000000000884  R      0x4<br>  GNU_STACK      0x0000000000000000 0x0000000000000000 0x0000000000000000<br>                 0x0000000000000000 0x0000000000000000  RW     0x10<br>  GNU_RELRO      0x000000000001eff0 0x000000000021eff0 0x000000000021eff0<br>                 0x0000000000001010 0x0000000000001010  R      0x1</p>
+<p> Section to Segment mapping:<br>  Segment Sections…<br>   00<br>   01     .interp<br>   02     .interp .note.ABI-tag .note.gnu.build-id .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .init .plt .plt.got .text .fini .rodata .eh_frame_hdr .eh_frame<br>   03     .init_array .fini_array .data.rel.ro .dynamic .got .data .bss<br>   04     .dynamic<br>   05     .note.ABI-tag .note.gnu.build-id<br>   06     .eh_frame_hdr<br>   07<br>   08     .init_array .fini_array .data.rel.ro .dynamic .got</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/07/03/RBT%20and%20HashTable%20STL%20%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -954,291 +1143,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/11/linux%E5%91%BD%E4%BB%A4%E5%A4%87%E5%BF%98%E5%BD%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar1.jpeg">
-      <meta itemprop="name" content="Guangdong Han">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老韩的知识库">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/06/11/linux%E5%91%BD%E4%BB%A4%E5%A4%87%E5%BF%98%E5%BD%95/" class="post-title-link" itemprop="url">linux命令备忘录</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-11 14:33:41" itemprop="dateCreated datePublished" datetime="2022-06-11T14:33:41+08:00">2022-06-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-15 21:27:23" itemprop="dateModified" datetime="2022-06-15T21:27:23+08:00">2022-06-15</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux-%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">Linux 系统</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/06/11/linux%E5%91%BD%E4%BB%A4%E5%A4%87%E5%BF%98%E5%BD%95/" class="post-meta-item leancloud_visitors" data-flag-title="linux命令备忘录" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/06/11/linux%E5%91%BD%E4%BB%A4%E5%A4%87%E5%BF%98%E5%BD%95/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/06/11/linux%E5%91%BD%E4%BB%A4%E5%A4%87%E5%BF%98%E5%BD%95/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="目录文件相关"><a href="#目录文件相关" class="headerlink" title="目录文件相关"></a>目录文件相关</h2><h3 id="压缩与解压"><a href="#压缩与解压" class="headerlink" title="压缩与解压"></a>压缩与解压</h3><p><strong>tar -zvcf XXX.tar.gz 打包内容</strong> // 打包内容可以是多个文件，用空格分隔；或者是个目录<br><strong>tar -zvcf XXX.tar.gz -C 解压目录</strong> // -C 必不可少</p>
-<p>zip [选项] xxx.zip 打包内容 //对于文件夹需要-r<br>unzip [选项] xxx.zip -d 解压路径</p>
-<h3 id="Linux-运行级别"><a href="#Linux-运行级别" class="headerlink" title="Linux 运行级别"></a>Linux 运行级别</h3><blockquote>
-<ul>
-<li>0 级别(halt)：系统停机模式</li>
-<li>1 级别(single user)：单用户模式。只允许系统管理员登录，一般系统维护时会设置该模式</li>
-<li>2 级别(multiuser without nfs)：多用户模式，不开启网络</li>
-<li>3 级别(full multiuser)：完整的多用户模式</li>
-<li>4 级别(unused)：预留的自定义模式，一般不会使用</li>
-<li>5 级别(x11)：图形界面</li>
-<li>6 级别(reboot)：重启模式<br>常用：graphical.target 5<br>multi-user.target 3<br>可通过systemctl set-default XXX 来设置</li>
-</ul>
-</blockquote>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rechard@DESKTOP:~/socket$ systemctl get-<span class="keyword">default</span></span><br><span class="line">graphical.target</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="查看文件指令"><a href="#查看文件指令" class="headerlink" title="查看文件指令"></a>查看文件指令</h3><p>//ctrl + b ;ctrl + f 可以翻页，空格翻页，enter 下一行, -n 添加行号<br>//查看重要文件可以采取此方式，不会误改文件<br>cat -n XXX | less </p>
-<h3 id="gt-重定向-和-gt-gt-追加"><a href="#gt-重定向-和-gt-gt-追加" class="headerlink" title="&gt; 重定向 和 &gt;&gt; 追加"></a>&gt; 重定向 和 &gt;&gt; 追加</h3><p>ls -al &gt; 1.txt<br>echo “test” &gt;&gt; 1.txt<br>cat 1.txt &gt; 2.txt</p>
-<h3 id="ln-s"><a href="#ln-s" class="headerlink" title="ln -s"></a>ln -s</h3><p>ln -s [源文件或目录] [软链接名] //创建，删除<br>ln -s /home/trace /home/data/trace<br>rm /home/data/trace</p>
-<h3 id="find"><a href="#find" class="headerlink" title="find"></a>find</h3><p> find [搜索范围][选项]<br> find /home -name “*.c”</p>
-<h2 id="定时任务调度"><a href="#定时任务调度" class="headerlink" title="定时任务调度"></a>定时任务调度</h2><hr>
-<hr>
-<p>|    |    |    |    |<br>|    |    |    |    +—– 星期中星期几 (0 - 6) (星期天 为0)<br>|    |    |    +———- 月份 (1 - 12)<br>|    |    +————— 一个月中的第几天 (1 - 31)<br>|    +——————– 小时 (0 - 23)<br>+————————- 分钟 (0 - 59)</p>
-<h3 id="周期定时任务crontab"><a href="#周期定时任务crontab" class="headerlink" title="周期定时任务crontab"></a>周期定时任务crontab</h3><p>注意占位符的含义，脚本无法执行，注意太添加环境变量或使用绝对路径</p>
-<blockquote>
-<ul>
-<li>crontab -e 编辑crontab定时任务// 可以添加命令和脚本</li>
-<li>crontab -l 查看当前用户定时任务</li>
-<li>crontab -r 删除当前用户所有任务</li>
-</ul>
-</blockquote>
-<h3 id="一次性订时任务"><a href="#一次性订时任务" class="headerlink" title="一次性订时任务"></a>一次性订时任务</h3><blockquote>
-<ul>
-<li>at的守护进程每60秒检查一次作业队列，有作业时检查作业，时间恰好达到，则运行作业。</li>
-<li>前提：保证atd进程已经启动，检查atd进程是否启动：ps -ef | grep atd。</li>
-<li>atd的命令格式： at [选项] [时间]</li>
-<li>ctrl+D：结束at命令的输入。<br>[选项]</li>
-<li>m 任务完成后给用户发送邮件，没有标准输出。</li>
-<li>v 显示任务的被执行时间</li>
-<li>c 打印任务的内容到标准输出</li>
-<li>V 显示版本信息</li>
-<li>q &lt;队列&gt; 使用指定的队列</li>
-<li>f &lt;文件&gt; 使用指定文件读入任务</li>
-<li>t &lt;时间参数&gt; 以时间参数的形式提交要运行的任务</li>
-</ul>
-</blockquote>
-<p>[时间]<br>hh:mm 例：04:00（当天4点）<br>midnight（深夜），noon（中午），teatime（下午茶时间）<br>12小时制：AM上午，PM下午，例：10 pm<br>month day 或 mm/dd/yy（年月日）或 dd mm yy 或 08:00 2020-06-11<br>now+ count time-units，例：now+1 minutes<br>today<br>tomorrow</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//5min 后执行特定命令</span></span><br><span class="line">at now + <span class="number">2</span> minutes</span><br><span class="line">date &gt; /root/date.<span class="built_in">log</span></span><br><span class="line">ctrl+D 两次</span><br><span class="line"><span class="comment">//5min 后执行固定脚本</span></span><br><span class="line">at now + <span class="number">5</span> minutes</span><br><span class="line">/root/my.sh</span><br><span class="line">ctrl+D 两次</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><p>Linux 系统有个唯一的目录结构，各磁盘分区挂在到特定目录；<br>Linux 硬盘分为IDE硬盘和SCSI硬盘，目前基本是SCSI硬盘<br>查看所有设备挂在情况lsblk -f  </p>
-<h4 id="如何增加一块硬盘"><a href="#如何增加一块硬盘" class="headerlink" title="如何增加一块硬盘"></a>如何增加一块硬盘</h4><ol>
-<li>虚拟机增加硬盘</li>
-<li>分区 fdisk /dev/sdb </li>
-<li>格式化 mkfs -t ext4 /dev/sdb1</li>
-<li>挂载 mount/umount 设备名称 挂载目录 命令挂载重启后失效</li>
-<li>设置自动挂载 通过修改fetc/fstab</li>
-</ol>
-<p>查询磁盘使用情况:df -h hexo</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">rechard@DESKTOP-GTFTOTJ:~$ df -h</span><br><span class="line">Filesystem      Size  Used Avail Use% Mounted on</span><br><span class="line">rootfs          <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /</span><br><span class="line">none            <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /dev</span><br><span class="line">none            <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /run</span><br><span class="line">none            <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /run/lock</span><br><span class="line">none            <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /run/shm</span><br><span class="line">none            <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /run/user</span><br><span class="line">tmpfs           <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /sys/fs/cgroup</span><br><span class="line">C:\             <span class="number">105</span>G   <span class="number">88</span>G   <span class="number">18</span>G  <span class="number">84</span>% /mnt/c</span><br><span class="line">D:\             <span class="number">3.1</span>G  <span class="number">141</span>M  <span class="number">2.9</span>G   <span class="number">5</span>% /mnt/d</span><br><span class="line">E:\             <span class="number">314</span>G  <span class="number">239</span>G   <span class="number">75</span>G  <span class="number">77</span>% /mnt/e</span><br><span class="line">F:\             <span class="number">323</span>G  <span class="number">284</span>G   <span class="number">40</span>G  <span class="number">88</span>% /mnt/f</span><br></pre></td></tr></table></figure>
-
-<p>查询指定目录的磁盘占用情况<br>du -hac –max-depth=1 /opt </p>
-<blockquote>
-<ul>
-<li>-s 指定目录的磁盘占用情况</li>
-<li>-h 带计量单位</li>
-<li>-a 含文件</li>
-<li>–max-depth=1 子目录深度</li>
-<li>-c列出明细同时，汇总</li>
-</ul>
-</blockquote>
-<p>查看某个文件夹文件的个数<br>ls -l | grep “^_” | wc -l<br>查看某个文件夹路径的个数<br>ls -l | grep “^d” | wc -l</p>
-<p>查看某个文件夹文件的个数<br>ls -lR | grep “^_” | wc -l</p>
-<p>查看某个文件夹路径的个数<br>ls -lR | grep “^d” | wc -l</p>
-<p>wc 参数及含义参数含义</p>
-<p>-c显示文件的Bytes数(字节数)</p>
-<p>-l将每个文件的行数及文件名输出到屏幕上</p>
-<p>-m将每个文件的字符数及文件名输出到屏幕上，如果当前系统不支持多字节字符其将显示与-c参数相同的结果</p>
-<p>-w将每个文件含有多少个词及文件名输出到屏幕上</p>
-<h3 id="wsl2-修改主机名"><a href="#wsl2-修改主机名" class="headerlink" title="wsl2 修改主机名"></a>wsl2 修改主机名</h3><p>修改etc/hostname<br>DESKTOP-GTFTOTJ-&gt;Han<br>修改etc/hosts</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span>   localhost</span><br><span class="line"> #<span class="number">127.0</span><span class="number">.1</span><span class="number">.1</span>  DESKTOP-GTFTOTJ.localdomain DESKTOP-GTFTOTJ</span><br><span class="line"> <span class="number">127.0</span><span class="number">.1</span><span class="number">.1</span>   Han.localdomain Han</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/10/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar1.jpeg">
-      <meta itemprop="name" content="Guangdong Han">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老韩的知识库">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/06/10/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/" class="post-title-link" itemprop="url">系统架构</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-10 16:43:29" itemprop="dateCreated datePublished" datetime="2022-06-10T16:43:29+08:00">2022-06-10</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-11 14:23:57" itemprop="dateModified" datetime="2022-06-11T14:23:57+08:00">2022-06-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1/" itemprop="url" rel="index"><span itemprop="name">软件设计</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/06/10/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/" class="post-meta-item leancloud_visitors" data-flag-title="系统架构" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/06/10/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/06/10/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="多角度理解软件架构"><a href="#多角度理解软件架构" class="headerlink" title="多角度理解软件架构"></a>多角度理解软件架构</h3><ol>
-<li>程序员：基于何种框架编写哪些类？</li>
-<li>PL：模块划分和接口定义</li>
-<li>SE: 业务领域对象关系的建模</li>
-</ol>
-<h3 id="系统描述维度"><a href="#系统描述维度" class="headerlink" title="系统描述维度"></a>系统描述维度</h3><ol>
-<li>对外接口约定</li>
-<li>作用域控制</li>
-<li>组件命名</li>
-<li>计算机系统架构</li>
-<li>执行架构：驱动器</li>
-<li>运行目录架构</li>
-<li>代码目录架构</li>
-<li>项目编译架构</li>
-<li>数据管理架构</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1310,7 +1214,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">24</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
