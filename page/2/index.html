@@ -188,6 +188,98 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/11/%E7%BC%96%E7%A0%81%E7%BB%83%E4%B9%A0-string/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpeg">
+      <meta itemprop="name" content="Guangdong Han">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老韩的知识库">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/11/%E7%BC%96%E7%A0%81%E7%BB%83%E4%B9%A0-string/" class="post-title-link" itemprop="url">编码练习-string</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-11 20:37:05 / 修改时间：23:45:31" itemprop="dateCreated datePublished" datetime="2022-06-11T20:37:05+08:00">2022-06-11</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%BC%96%E7%A0%81%E7%BB%83%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">编码练习</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/06/11/%E7%BC%96%E7%A0%81%E7%BB%83%E4%B9%A0-string/" class="post-meta-item leancloud_visitors" data-flag-title="编码练习-string" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/06/11/%E7%BC%96%E7%A0%81%E7%BB%83%E4%B9%A0-string/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/06/11/%E7%BC%96%E7%A0%81%E7%BB%83%E4%B9%A0-string/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="判定字符是否唯一"><a href="#判定字符是否唯一" class="headerlink" title="判定字符是否唯一"></a>判定字符是否唯一</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isUnique</span><span class="params">(string astr)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> mask = <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> step = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">char</span> cr : astr)&#123;</span><br><span class="line">            step = cr - <span class="built_in">int</span>(<span class="string">&#x27;a&#x27;</span>);</span><br><span class="line">            <span class="keyword">if</span>(mask &amp; (<span class="number">1</span>&lt;&lt;step))&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                mask |= (<span class="number">1</span>&lt;&lt;step);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isUnique</span><span class="params">(string astr)</span> </span>&#123;       </span><br><span class="line">        set&lt;<span class="type">char</span>&gt; s;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">char</span> cr : astr)&#123;</span><br><span class="line">            s.<span class="built_in">insert</span>(cr);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> astr.<span class="built_in">size</span>() == s.<span class="built_in">size</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="判定是否互为字符重排"><a href="#判定是否互为字符重排" class="headerlink" title="判定是否互为字符重排"></a>判定是否互为字符重排</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">CheckPermutation</span><span class="params">(string s1, string s2)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span>(s1.<span class="built_in">length</span>() != s2.<span class="built_in">length</span>())</span><br><span class="line">      &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">sort</span>(s1.<span class="built_in">begin</span>(), s1.<span class="built_in">end</span>());</span><br><span class="line">      <span class="built_in">sort</span>(s2.<span class="built_in">begin</span>(), s2.<span class="built_in">end</span>());</span><br><span class="line">      <span class="keyword">return</span>  s1 == s2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">时间复杂度：<span class="built_in">O</span>(nlogn)，其中 n 为s1的长度。排序的时间复杂度为 <span class="built_in">O</span>(n\log n)<span class="built_in">O</span>(nlogn)，比较两个字符串是否相等时间复杂度为 <span class="built_in">O</span>(n)，因此总体时间复杂度为 <span class="built_in">O</span>(nlogn+n)=<span class="built_in">O</span>(nlogn)。</span><br><span class="line"></span><br><span class="line">空间复杂度：<span class="built_in">O</span>(logn)。排序需要<span class="built_in">O</span>(logn) 的空间复杂度。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Solution &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">bool</span> <span class="built_in">CheckPermutation</span>(string s1, string s2) &#123;</span><br><span class="line">        <span class="keyword">if</span> (s1.<span class="built_in">length</span>() != s2.<span class="built_in">length</span>()) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">table</span><span class="params">(<span class="number">26</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; ch: s1) &#123;</span><br><span class="line">            table[ch - <span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; ch: s2) &#123;</span><br><span class="line">            table[ch - <span class="string">&#x27;a&#x27;</span>]--;</span><br><span class="line">            <span class="keyword">if</span> (table[ch - <span class="string">&#x27;a&#x27;</span>] &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">时间复杂度：<span class="built_in">O</span>(n)，其中 nn 为 s <span class="number">1</span>的长度。</span><br><span class="line">空间复杂度：<span class="built_in">O</span>(S)，其中 S 为字符集大小，此处 S=<span class="number">26</span>。</span><br><span class="line"></span><br><span class="line">链接：https:<span class="comment">//leetcode.cn/problems/check-permutation-lcci/solution/pan-ding-shi-fou-hu-wei-zi-fu-zhong-pai-dmkmc/</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="URL化。编写一种方法，将字符串中的空格全部替换为-20。假定该字符串尾部有足够的空间存放新增字符，并且知道字符串的“真实”长度。（注：用Java实现的话，请使用字符数组实现，以便直接在数组上操作。）"><a href="#URL化。编写一种方法，将字符串中的空格全部替换为-20。假定该字符串尾部有足够的空间存放新增字符，并且知道字符串的“真实”长度。（注：用Java实现的话，请使用字符数组实现，以便直接在数组上操作。）" class="headerlink" title="URL化。编写一种方法，将字符串中的空格全部替换为%20。假定该字符串尾部有足够的空间存放新增字符，并且知道字符串的“真实”长度。（注：用Java实现的话，请使用字符数组实现，以便直接在数组上操作。）"></a>URL化。编写一种方法，将字符串中的空格全部替换为%20。假定该字符串尾部有足够的空间存放新增字符，并且知道字符串的“真实”长度。（注：用Java实现的话，请使用字符数组实现，以便直接在数组上操作。）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">replaceSpaces</span><span class="params">(string S, <span class="type">int</span> length)</span> </span>&#123;</span><br><span class="line">        string s1;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> len = <span class="number">0</span>; len &lt; length; len++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(S[len] == <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                s1+=<span class="string">&quot;%20&quot;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                s1+=S[len];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s1;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/11/linux%E5%91%BD%E4%BB%A4%E5%A4%87%E5%BF%98%E5%BD%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1188,109 +1280,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/06/%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E5%92%8C%E7%B1%BB%E6%A8%A1%E6%9D%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar1.jpeg">
-      <meta itemprop="name" content="Guangdong Han">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="老韩的知识库">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/06/06/%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E5%92%8C%E7%B1%BB%E6%A8%A1%E6%9D%BF/" class="post-title-link" itemprop="url">函数模板和类模板</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-06 11:36:08" itemprop="dateCreated datePublished" datetime="2022-06-06T11:36:08+08:00">2022-06-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-11 14:19:35" itemprop="dateModified" datetime="2022-06-11T14:19:35+08:00">2022-06-11</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
-                </span>
-            </span>
-
-          
-            <span id="/2022/06/06/%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E5%92%8C%E7%B1%BB%E6%A8%A1%E6%9D%BF/" class="post-meta-item leancloud_visitors" data-flag-title="函数模板和类模板" title="阅读次数">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span class="leancloud-visitors-count"></span>
-            </span>
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/06/06/%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E5%92%8C%E7%B1%BB%E6%A8%A1%E6%9D%BF/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/06/06/%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF%E5%92%8C%E7%B1%BB%E6%A8%A1%E6%9D%BF/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="c-函数模板与类模板"><a href="#c-函数模板与类模板" class="headerlink" title="c++ 函数模板与类模板"></a>c++ 函数模板与类模板</h1><h2 id="为什么需要函数模板与类模板？实现机理？"><a href="#为什么需要函数模板与类模板？实现机理？" class="headerlink" title="为什么需要函数模板与类模板？实现机理？"></a>为什么需要函数模板与类模板？实现机理？</h2><p>解决因参数类型不同导致，重复定义相似的函数或者类。</p>
-<p>函数模板并不是定义一个函数，使其可以兼容各种类型，而是通过两次编译的方式，根据不同参数调用生成多个不同数据类型的函数或者是类；可以通过查看汇编代码验证；</p>
-<p>模板的本质是数据类型参数化。</p>
-<h2 id="模板函数与普通函数发生重载；"><a href="#模板函数与普通函数发生重载；" class="headerlink" title="模板函数与普通函数发生重载；"></a>模板函数与普通函数发生重载；</h2><p>模板函数遵循严格的参数类型匹配，普通函数支持隐式类型转换；如果普通函数均能够完全匹配则优先调用普通函数。</p>
-<h2 id="static-关键字与类模板"><a href="#static-关键字与类模板" class="headerlink" title="static 关键字与类模板"></a>static 关键字与类模板</h2><p>类模板不同的参数类型具现化后，属于不同的函数；比如int 与float具现化两个不同的函数，对应static 的变量当然没有什么关系；如果具现化后为同一个类 ，则static为同一变量。</p>
-<h2 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h2><p>具体注意细节看如下代码的注释</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Test.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">pragma</span> once</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _CRT_SECURE_NO_WARNINGS</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Point</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt; &lt;T&gt; (ostream&amp; out, Point&lt;T&gt;&amp; p1); <span class="comment">//注意此处语法，</span></span><br><span class="line">                                                                 <span class="comment">//声明时多了个&lt;T&gt;</span></span><br><span class="line">                                                                 <span class="comment">//一般输入输出用友元函数</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="built_in">Point</span>(T x, T y);</span><br><span class="line">	~<span class="built_in">Point</span>();</span><br><span class="line">	Point&lt;T&gt; <span class="keyword">operator</span>+(<span class="type">const</span> Point&lt;T&gt;&amp; p1);</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">	T m_x;</span><br><span class="line">	T m_y;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;Test.h&quot;</span></span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">Point&lt;T&gt;::<span class="built_in">Point</span>(T x, T y)</span><br><span class="line">&#123;</span><br><span class="line">	m_x = x;</span><br><span class="line">	m_y = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">Point&lt;T&gt;::~<span class="built_in">Point</span>() &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//注意3个地方加上&lt;T&gt; 即：参数，返回值，名称</span></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">Point&lt;T&gt; Point&lt;T&gt;::<span class="keyword">operator</span>+(<span class="type">const</span> Point&lt;T&gt;&amp; p1)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//下面函数内部Point&lt;T&gt;可以不写&lt;T&gt;</span></span><br><span class="line">	<span class="comment">//Point&lt;T&gt; temp(this-&gt;m_x + p1.m_x, this-&gt;m_y + p1.m_y);</span></span><br><span class="line">	<span class="function">Point <span class="title">temp</span><span class="params">(<span class="keyword">this</span>-&gt;m_x + p1.m_x, <span class="keyword">this</span>-&gt;m_y + p1.m_y)</span></span>;</span><br><span class="line">	<span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line">ostream&amp; <span class="keyword">operator</span>&lt;&lt; (ostream&amp; out, Point&lt;T&gt;&amp; p1) <span class="comment">//友元函数为全局函数无需加类作用符号</span></span><br><span class="line">&#123;</span><br><span class="line">	out &lt;&lt; <span class="string">&quot;Point.m_x=&quot;</span> &lt;&lt; p1.m_x &lt;&lt; <span class="string">&quot;   Point.m_y=&quot;</span> &lt;&lt; p1.m_y &lt;&lt; endl;</span><br><span class="line">	<span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="comment">//#include &quot;Test.cpp&quot;  此处必须包含cpp才可以正常调用，所以一般都将.h文件与.cpp 合二为一.hpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;Test.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Point&lt;<span class="type">int</span>&gt; p1 = <span class="built_in">Point</span>&lt;<span class="type">int</span>&gt;(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">	Point&lt;<span class="type">int</span>&gt; p2 = <span class="built_in">Point</span>&lt;<span class="type">int</span>&gt;(<span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">	Point&lt;<span class="type">int</span>&gt; p3 = p1 + p2;</span><br><span class="line">	cout &lt;&lt; p3;</span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="comment">//#include &quot;Test.cpp&quot;  此处必须包含cpp才可以正常调用，所以一般都将.h文件与.cpp 合二为一.hpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;Test.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	Point&lt;<span class="type">int</span>&gt; p1 = <span class="built_in">Point</span>&lt;<span class="type">int</span>&gt;(<span class="number">1</span>, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">	Point&lt;<span class="type">int</span>&gt; p2 = <span class="built_in">Point</span>&lt;<span class="type">int</span>&gt;(<span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">	Point&lt;<span class="type">int</span>&gt; p3 = p1 + p2;</span><br><span class="line">	cout &lt;&lt; p3;</span><br><span class="line">	<span class="built_in">system</span>(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1362,20 +1351,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">26</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
