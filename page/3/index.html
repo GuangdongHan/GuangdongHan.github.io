@@ -188,6 +188,113 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5%E5%92%8C%E5%88%86%E7%B1%BB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar1.jpeg">
+      <meta itemprop="name" content="Guangdong Han">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="老韩的知识库">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5%E5%92%8C%E5%88%86%E7%B1%BB/" class="post-title-link" itemprop="url">机器学习概念和分类</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-06-07 09:28:40" itemprop="dateCreated datePublished" datetime="2022-06-07T09:28:40+08:00">2022-06-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-11 14:20:02" itemprop="dateModified" datetime="2022-06-11T14:20:02+08:00">2022-06-11</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index"><span itemprop="name">C++</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2022/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5%E5%92%8C%E5%88%86%E7%B1%BB/" class="post-meta-item leancloud_visitors" data-flag-title="机器学习概念和分类" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5%E5%92%8C%E5%88%86%E7%B1%BB/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/06/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%A6%82%E5%BF%B5%E5%92%8C%E5%88%86%E7%B1%BB/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="机器学习概念"><a href="#机器学习概念" class="headerlink" title="机器学习概念"></a>机器学习概念</h3><blockquote>
+<ul>
+<li>机器学习是一种从大量的数据中生成规则、发现模型，来帮助我们预测、判断、分组和解决问题的技术。</li>
+<li>传统程序是程序员来定义函数，而在机器学习中是机器训练出函数。机器学习的本质特征，就是从数据中发现规则。</li>
+<li>我们做机器学习项目，就是要选定一个算法，然后用数据训练机器，找到一族函数中最适合的那一个，形成模型。</li>
+</ul>
+</blockquote>
+<h3 id="机器学习分类"><a href="#机器学习分类" class="headerlink" title="机器学习分类"></a>机器学习分类</h3><ul>
+<li>训练数据集全部有标签，叫监督学习（supervised learning）；如决策树，SVM， 贝叶斯</li>
+<li>训练数据集没有标签，叫做无监督学习（unsupervised learning）；如聚类，降维等。</li>
+<li>在训练数据集中，有的数据有标签，有的数据没有标签，我们叫做半监督学习（semi-supervised learning）。</li>
+<li>强化学习：不断地根据环境的反馈信息进行试错学习，进而调整优化自身的状态信息，其目的是为了找到最优策略、或者找到最大奖励的过程。（Reinforcement Learning）<br>不一定每次都明确地选择最优动作，而是要在探索（未知领域）和利用（当前知识）之间找到平衡。它反复试错、不断收集反馈，收集可供自己学习的信号，每经过一个训练周期，都变得比原来强一点，经过亿万次的训练能变得非常强大。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/06/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1079,7 +1186,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
