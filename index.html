@@ -211,10 +211,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2022-08-21 10:40:27 / 修改时间：21:00:54" itemprop="dateCreated datePublished" datetime="2022-08-21T10:40:27+08:00">2022-08-21</time>
+              <time title="创建时间：2022-08-21 10:40:27" itemprop="dateCreated datePublished" datetime="2022-08-21T10:40:27+08:00">2022-08-21</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-08-22 07:48:22" itemprop="dateModified" datetime="2022-08-22T07:48:22+08:00">2022-08-22</time>
+              </span>
 
           
             <span id="/2022/08/21/C++11/" class="post-meta-item leancloud_visitors" data-flag-title="C++ 11" title="阅读次数">
@@ -248,8 +254,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>实用技巧;</p>
-<h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><ol>
+          <h3 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h3><ol>
 <li>nullptr</li>
 </ol>
 <p>nullptr的出现是为了代替NULL;<br>传统C++ NUll 表示 0 或(void*(0)),这取决于编译器如何定义，<br>但是C++有重载，例如；foo(char*) 和 foo(int)；调用foo(NULL)会产生混乱；</p>
@@ -311,10 +316,10 @@
 <p>//TODO</p>
 <h3 id="智能指针与内存管理"><a href="#智能指针与内存管理" class="headerlink" title="智能指针与内存管理"></a>智能指针与内存管理</h3><h3 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h3><p>主要体现以下头文件中：</p>
 <ul>
-<li><atomic></atomic></li>
-<li><thread></thread></li>
-<li><mutex></mutex></li>
-<li><conditon_varibale></conditon_varibale></li>
+<li>atomic</li>
+<li>thread</li>
+<li>mutex</li>
+<li>conditon_varibale</li>
 </ul>
 <ol>
 <li>互斥量和临界区</li>
@@ -487,7 +492,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-21 21:02:48" itemprop="dateModified" datetime="2022-08-21T21:02:48+08:00">2022-08-21</time>
+                <time title="修改时间：2022-08-22 07:46:11" itemprop="dateModified" datetime="2022-08-22T07:46:11+08:00">2022-08-22</time>
               </span>
 
           
@@ -544,9 +549,7 @@
 </li>
 </ol>
 <h2 id="概要设计：以需求规格说明书为依据，对软件架构进行详细描述，对相应功能的实现过程进行详细介绍，为集成测试提供依据；"><a href="#概要设计：以需求规格说明书为依据，对软件架构进行详细描述，对相应功能的实现过程进行详细介绍，为集成测试提供依据；" class="headerlink" title="概要设计：以需求规格说明书为依据，对软件架构进行详细描述，对相应功能的实现过程进行详细介绍，为集成测试提供依据；"></a>概要设计：以需求规格说明书为依据，对软件架构进行详细描述，对相应功能的实现过程进行详细介绍，为集成测试提供依据；</h2><ol>
-<li><p>软件架构： 组件划分，架构图，组件之间依赖图，组件部署图（满足设计约束，数据追踪和异常处理）</p>
-<pre><code>      各组件之间关系，调用规则。符合平台规范，确定目录结构；
-</code></pre>
+<li><p>软件架构： 组件划分，架构图，组件之间依赖图，组件部署图（满足设计约束，数据追踪和异常处理）<br>各组件之间关系，调用规则。符合平台规范，确定目录结构；</p>
 </li>
 <li><p>关键功能序列图</p>
 </li>
@@ -558,7 +561,6 @@
 </li>
 </ol>
 <p>输出：类定义，即头文件。</p>
-<p>（4）Linux 网络技术？</p>
 <p>（5） 活动图？ </p>
 <h2 id="架构的相关概念"><a href="#架构的相关概念" class="headerlink" title="架构的相关概念"></a>架构的相关概念</h2><ol>
 <li><p>系统与子系统<br>一个系统的架构，只包括顶层这一个层级的架构，而不包括下属子系统层级的架构。所以微信架构，就是指微信系统这个层级的架构。当然，微信的子系统，比如支付系统，也有它自己的架构，同样只包括顶层。</p>
@@ -573,12 +575,12 @@
 <li><p>框架与架构<br>框架关注的是“规范”，架构关注的是“结构”。<br>框架是一整套开发规范，架构是某一套开发规范下的具体落地方案，包括各个模块之间的组合关系以及它们协同起来完成功能的运作规则。</p>
 </li>
 <li><p>4R架构<br>软件架构指软件系统的顶层（Rank）结构，它定义了系统由哪些角色（Role）组成，角色之间的关系（Relation）和运作规则（Rule）。<br>第一个 R，Rank。它是指软件架构是分层的，对应“系统”和“子系统”的分层关系。通常情况下，我们只需要关注某一层的架构，最多展示相邻两层的架构，而不需要把每一层的架构全部糅杂在一起。无论是架构设计还是画架构图，都应该采取“自顶向下，逐步细化”的方式。</p>
-</li>
-</ol>
 <p>第二个 R，Role。它是指软件系统包含哪些角色，每个角色都会负责系统的一部分功能。架构设计最重要的工作之一就是将系统拆分为多个角色。最常见的微服务拆分其实就是将整体复杂的业务系统按照业务领域的方式，拆分为多个微服务，每个微服务就是系统的一个角色。</p>
 <p>第三个 R，Relation。它是指软件系统的角色之间的关系，对应到架构图中其实就是连接线，角色之间的关系不能乱连，任何关系最后都需要代码来实现，包括连接方式（HTTP、TCP、UDP 和串口等）、数据协议（JSON、XML 和二进制等）以及具体的接口等。</p>
 <p>第四个 R，Rule。它是指软件系统角色之间如何协作来完成系统功能。我们在前面解读什么是“系统”的时候提到过：系统能力不是个体能力之和，而是产生了新的能力。那么这个新能力具体如何完成的呢？具体哪些角色参与了这个新能力呢？这就是 Rule 所要表达的内容。在架构设计的时候，核心的业务场景都需要设计 Rule。在实际工作中，为了方便理解，Rank、Role 和 Relation 是通过系统架构图来展示的，而 Rule 是通过系统序列图（System Sequence Diagram）来展示的。</p>
-<h3 id="reference-极客时间-李运华"><a href="#reference-极客时间-李运华" class="headerlink" title="reference 极客时间 李运华"></a>reference 极客时间 李运华</h3><p><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/6458?utm_source=u_nav_web&amp;utm_medium=u_nav_web&amp;utm_term=banner">https://time.geekbang.org/column/article/6458?utm_source=u_nav_web&amp;utm_medium=u_nav_web&amp;utm_term=banner</a></p>
+</li>
+</ol>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><p> <a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/6458?utm_source=u_nav_web&amp;utm_medium=u_nav_web&amp;utm_term=banner">https://time.geekbang.org/column/article/6458?utm_source=u_nav_web&amp;utm_medium=u_nav_web&amp;utm_term=banner</a></p>
 
       
     </div>
