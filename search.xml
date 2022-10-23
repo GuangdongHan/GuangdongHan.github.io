@@ -805,4 +805,38 @@
         <tag>C++</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Mat</title>
+    <url>/2022/10/22/Mat/</url>
+    <content><![CDATA[<h3 id="Mat结构特点"><a href="#Mat结构特点" class="headerlink" title="Mat结构特点"></a>Mat结构特点</h3><ol>
+<li>Mat是OpenCV提供的C++接口，解决了C接口中IplImage必须使用着自己管理图像内存的弊端；</li>
+<li>每个Mat对象拥有一个独立的文件头，但共享图像数据，文件头中有字段指向真实图像数据地址；</li>
+<li>每创建一个文件引用计数+1，当引用计数减为0时，该对象销毁时负责释放内存；</li>
+<li>assignment operator and the copy constructor 只会copy 文件头.</li>
+<li>cv::Mat::clone() and cv::Mat::copyTo() 会copy 完整图像；</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">Mat A, C;                          <span class="comment">// creates just the header parts</span></span><br><span class="line">A = <span class="built_in">imread</span>(argv[<span class="number">1</span>], IMREAD_COLOR); <span class="comment">// here we&#x27;ll know the method used (allocate matrix)</span></span><br><span class="line"><span class="function">Mat <span class="title">B</span><span class="params">(A)</span></span>;                                 <span class="comment">// Use the copy constructor</span></span><br><span class="line">C = A;                                    <span class="comment">// Assignment operator</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 深拷贝</span></span><br><span class="line"></span><br><span class="line">Mat F = A.<span class="built_in">clone</span>();</span><br><span class="line">Mat G;</span><br><span class="line">A.<span class="built_in">copyTo</span>(G);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>OpenCV</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vim命令</title>
+    <url>/2022/10/23/vim%E5%91%BD%E4%BB%A4/</url>
+    <content><![CDATA[<h3 id="1-文本修改"><a href="#1-文本修改" class="headerlink" title="1. 文本修改"></a>1. 文本修改</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">R: 修改模式</span><br><span class="line">r: 替换当前光标下的字符</span><br><span class="line">~：修改光标下字符的大小写</span><br><span class="line">cw:  删除从光标处到单词结尾的文本并进入到插入模式</span><br><span class="line">cb:  删除从光标处到单词开头的文本并进入到插入模式</span><br><span class="line">cc:  删除一整行并进入到插入模式</span><br><span class="line">xp:  交换光标和下一个字符</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-字符串搜索"><a href="#2-字符串搜索" class="headerlink" title="2. 字符串搜索"></a>2. 字符串搜索</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">/string   正向查找</span><br><span class="line">?string   反向查找</span><br><span class="line">：set hls   设置高亮，按*高亮所有光标下方字符，按n健下一个；</span><br><span class="line">:s/old/<span class="keyword">new</span>   将当前行的第一个字符串old替换为<span class="keyword">new</span></span><br><span class="line">:s/old/<span class="keyword">new</span>/g   将当前行的所有字符串old替换为<span class="keyword">new</span></span><br><span class="line">:<span class="number">90</span>s/old/<span class="keyword">new</span>/g  将指定行的所有字符串old替换为<span class="keyword">new</span></span><br><span class="line">:<span class="number">90</span>,<span class="number">93</span>s/old/<span class="keyword">new</span>/g  将指定范围的行的所有字符串old替换为<span class="keyword">new</span></span><br><span class="line">:%s/old/<span class="keyword">new</span>/g   将文本中所有的字符串old替换为<span class="keyword">new</span></span><br><span class="line">:%s/old/<span class="keyword">new</span>/gc  依次替换每个字符串关键字</span><br><span class="line">:%s/^<span class="keyword">struct</span>/<span class="type">int</span>/g   将所有以<span class="keyword">struct</span>开头的字符串替换为<span class="type">int</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-翻屏和移动"><a href="#3-翻屏和移动" class="headerlink" title="3. 翻屏和移动"></a>3. 翻屏和移动</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">半屏滚动:  ctrl+u/ctrl+d</span><br><span class="line">全屏滚动:  ctrl+f/ctrl+b</span><br><span class="line"></span><br><span class="line">H:  移动到home</span><br><span class="line">M:  移动到屏幕中间</span><br><span class="line">L:  移动到一屏末尾</span><br><span class="line">ctrl+G:  查看当前的位置状态</span><br><span class="line"></span><br><span class="line">xG:  跳转到指定的第x行，G移动到文件按末尾，``（<span class="number">2</span>次单引号)返回到跳转前的位置</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">单个字符移动：</span><br><span class="line">h:  向左移动</span><br><span class="line">l:  向右移动</span><br><span class="line">j:  向下移动</span><br><span class="line">k:  向上移动</span><br><span class="line">xh:  向左移动x个字符距离</span><br><span class="line"></span><br><span class="line">单词移动：</span><br><span class="line">w:  将光标移动到下一个单词的开头</span><br><span class="line">b:  将光标移动到前一个单词的开头</span><br><span class="line">e:  将光标移动到下一个单词的词末</span><br><span class="line">E:  移动到单词的结尾(忽略标点符号)</span><br><span class="line">ge:  将光标移动到上一个单词的词末</span><br><span class="line"><span class="number">2</span>w:  指定移动的次数</span><br><span class="line"></span><br><span class="line">行移动：</span><br><span class="line">$:  将光标移动到当前行的行尾</span><br><span class="line"><span class="number">0</span>:  将光标移动到当前行的行首</span><br><span class="line">^:  将光标移动到当前行的第一个非空字符（行首和当前行非空字符不是一个位置）</span><br><span class="line"><span class="number">2</span>|:  移到当前行的第<span class="number">2</span>列</span><br><span class="line">fx:  将光标移动到当前行的第一个字符x上</span><br><span class="line"><span class="number">3f</span>x: 将光标移动到航前行的第<span class="number">3</span>个字符x上</span><br><span class="line">tx:   将光标移动到目标字符x的前一个字符上</span><br><span class="line">fx和tx可以通过;和,进行重复移动，一个是正向重复，一个是反向重复</span><br><span class="line">%:  用于符号间的移动，它会在一对()、[]、&#123;&#125;之间跳跃</span><br><span class="line"></span><br><span class="line">文本块移动：</span><br><span class="line">(：  移到当前句子的开头</span><br><span class="line">):  移到下一个句子的开头</span><br><span class="line">&#123;:  移到当前一段的开头</span><br><span class="line">&#125;:  移到下一段的开头</span><br><span class="line">[[:  移到当前这一节的开头</span><br><span class="line">]]:  移到下一节的开头</span><br><span class="line"></span><br><span class="line">在屏幕中移动</span><br><span class="line">xG:  跳转到指定的第x行，G移动到文件按末尾，``（<span class="number">2</span>次单引号)返回到跳转前的位置</span><br><span class="line">gg:  移动到文件开头</span><br><span class="line">x%:  移动到文件中间，就使用<span class="number">50</span>%</span><br><span class="line">H:  移动到home</span><br><span class="line">M:  移动到屏幕中间</span><br><span class="line">L:  移动到一屏末尾</span><br><span class="line">ctrl+G:  查看当前的位置状态</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-删除"><a href="#4-删除" class="headerlink" title="4. 删除"></a>4. 删除</h3><p>x: 删除右侧字符<br>X: 删除左侧字符<br>d$:  删除从光标到一行末尾的整个文本<br>d0:  删除从光标到一行开头的所有单词</p>
+<p>dw:  删除一个单词(从光标处到空格)<br>daw:  无论光标在什么位置，删除光标所在的整个单词(包括空白字符)<br>diw:  删除整个单词文本，但是保留空格字符不删除<br>d2w:  删除从当前光标开始处的2个单词</p>
+<p>行删除<br>dd:  删除当前光标处的一整行=D<br>5dd:  删除从光标开始处的5行代码<br>dgg:  删除从光标到文本开头<br>dG:  删除从光标到文本结尾</p>
+<p>行合并<br>J:  删除一个分行符，将当前行与下一行合并</p>
+<h3 id="5-文本插入"><a href="#5-文本插入" class="headerlink" title="5. 文本插入"></a>5. 文本插入</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">i:  在当前光标的前面插入字符</span><br><span class="line">a:  在当前光标的后面追加字符</span><br><span class="line">o:  在当前光标的下一行行首插入字符</span><br><span class="line">I:  在一行的开头添加文本</span><br><span class="line">A:  在一行的结尾处添加文本</span><br><span class="line">O:  在光标当前行的上一行插入文本</span><br><span class="line">s:  删除当前光标处的字符并进入到插入模式</span><br><span class="line">S:  删除光标所在处的行，并进入到插入模式</span><br><span class="line">u:  撤销修改</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+  </entry>
 </search>
